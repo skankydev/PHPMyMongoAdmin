@@ -1,0 +1,21 @@
+{
+    "name": "skank/php-mymongo-admin",
+    "description": "a little mongo manager",
+    "type": "app",
+    "license": "MIT",
+    "authors": [
+        {
+            "name" : "simon schenck",
+            "email": "simon.schenck@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mongodb/mongodb": "^1.0.0@beta"
+    },
+    "autoload": {
+        "psr-4": { 
+            "PHPMyMongoAdmin\\": "src/"
+        }
+    }
+}

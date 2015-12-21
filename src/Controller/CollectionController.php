@@ -18,8 +18,13 @@ use PHPMyMongoAdmin\MasterController;
 
 class CollectionController extends MasterController {
 
-	function index($dbName){
-
+	function index($cName, $page = 1){
+		$option = [
+			'page'=>(int)$page,
+		];
+		$data = $this->Collection->getList($cName,$option);
+		$data->setParams(['collection'=>$cName]);
+		$this->view->set(['data'=>$data,'cName'=>$cName]);
 	}
 
 	public function view($_id = ''){

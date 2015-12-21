@@ -23,8 +23,9 @@ class DatabaseController extends MasterController {
 		$this->view->set(['dbList' => $dbList]);
 	}
 
-	public function view(){
-
+	public function view($dbName = ''){
+		$collectionList = $this->Database->getCollectionList($dbName);
+		$this->view->set(['dbName' => $dbName,'collectionList'=>$collectionList]);
 	}
 
 	public function add(){

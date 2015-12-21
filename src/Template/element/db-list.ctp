@@ -3,8 +3,8 @@
 	<?php 
 		$manager = new MyManager();
 		$dbList = $manager->getDBList();
+		echo $this->link('creat database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
 	?>
-	<button class="btn-creatdb" data-url="/src/element/creatdb.php">creat database</button>
 	<ul>
 	<?php foreach ($dbList as $db): ?>
 		<li class="db-list">

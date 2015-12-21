@@ -18,10 +18,10 @@ return [
 		'action'    => 'index'
 	],
 	'paginator'=>[
-		'limit' => 1,
+		'limit' => 10,
 		'page'  => 1,
 		'count' => 1,
-		'range' => 1,
+		'range' => 5,
 		'pages' => 1,
 	],
 	'request'    => ['historyLimit'=>10],

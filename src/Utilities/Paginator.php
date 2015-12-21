@@ -25,7 +25,7 @@ class Paginator implements Iterator {
 	use Iterable;
 
 	var $data = [];
-	var $option = [];
+	var $option = ['params'=>[]];
 	
 	/**
 	 * construct
@@ -43,8 +43,13 @@ class Paginator implements Iterator {
 	function getOption(){
 		return $this->option;
 	}
-
-
+	/**
+	 * set parametre for link in paginator
+	 * @param array $params the params
+	 */
+	function setParams($params){
+		$this->option['params'] = $params;
+	}
 	/**
 	 * set option for pagination
 	 * @param array $option new option

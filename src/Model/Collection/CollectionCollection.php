@@ -17,9 +17,41 @@ use PHPMyMongoAdmin\MasterCollection;
 use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\Utilities\Paginator;
 
+use MongoDB\Driver\Manager;
+use MongoDB\Collection;
+
 use stdClass;
 
 class CollectionCollection extends MasterCollection {
 
+	var $manager;
+	private $defaultQuery = ['query'=>[]];
+
+	function __construct($name){
+		parent::__construct($name);
+		$this->manager = new Manager("mongodb://localhost:27017");
+	}
+
+	function getList($collectionName,$option = []){
+		$collection = new collection($this->manager,$collectionName);
+		$option = array_replace_recursive($this->defaultQuery,$option);
+		$dOption = Config::get('paginator');
+		$option = array_replace_recursive($dOption,$option);
+		$option['skip'] = $option['limit']*($option['page']-1);
+		$query = $option['query'];
+		unset($option['query']);
+		$option['count'] = $collection->count($query);
+		$result = $collection->find($query,$option);
+		$retour = [];
+		foreach ($result as $data) {
+			$retour[]=$data;
+		}
+		$paginator = new Paginator($retour);
+		unset($option['skip']);
+		$paginator->setOption($option);
+
+		return $paginator;
+		
+	}
 
 }

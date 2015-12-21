@@ -16,15 +16,19 @@ namespace PHPMyMongoAdmin\Model\Collection;
 use PHPMyMongoAdmin\MasterCollection;
 use MongoDB\Driver\Manager;
 use MongoDB\Client;
+use MongoDB\Database;
 
 use stdClass;
 
 class DatabaseCollection extends MasterCollection {
 
 	var $client;
+	var $manager;
+	var $database;
 
 	function __construct($name){
 		parent::__construct($name);
+		$this->manager = new Manager("mongodb://localhost:27017");
 		$this->client = new Client('mongodb://localhost:27017');
 	}
 
@@ -37,6 +41,13 @@ class DatabaseCollection extends MasterCollection {
 			$retour[$key]['empty'] = $value->isEmpty();
 		}
 		return $retour;
+	}
+
+	function getCollectionList($dbName){
+		$this->database = new Database($this->manager,$dbName);
+		$retour = [];
+		$result = $this->database->listCollections();
+		return $result;
 	}
 
 	//TODO je doit caser ca dans un helper!

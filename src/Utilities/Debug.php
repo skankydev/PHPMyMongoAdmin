@@ -41,9 +41,9 @@ function debug($data,$message = ''){
 	$output = preg_replace_callback("/ [A-Z][a-zA-Z\ ]+ \(/",function($result){
 		return preg_replace("/[A-Z][a-zA-Z0-9\ ]+/", "<span class=\"debug-source\">$0</span>", $result[0]);
 	}, $output);
-	$output = preg_replace_callback("/ \=\> [\w ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ'\-\+:]+/",function($result){
-		if(preg_match("/\=\> [0-9]+$/", $result[0])){
-			return preg_replace("/ [0-9]+$/", "<span class=\"debug-integer\">$0</span>", $result[0]);
+	$output = preg_replace_callback("/ \=\> [\w ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ'\-\+:.]+/",function($result){
+		if(preg_match("/\=\> [0-9\.]+$/", $result[0])){
+			return preg_replace("/ [0-9\.]+$/", "<span class=\"debug-integer\">$0</span>", $result[0]);
 		}
 		$result = substr($result[0],-strlen($result[0])+4);//we je sais ca bug
 		return ' => <span class="debug-text">'.$result.'</span>';

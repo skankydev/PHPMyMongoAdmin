@@ -1,5 +1,8 @@
 <section id="CollectionList">
-	<headder><h1><?php echo $dbName; ?></h1></headder>
+	<headder>
+		<h1><?php echo $dbName; ?></h1>
+		<?php echo $this->link('create collection', ['controller'=>'collection','action'=>'add','params'=>['dbName'=>$dbName]]); ?>
+	</headder>
 	<table>
 		<thead>
 			<tr>

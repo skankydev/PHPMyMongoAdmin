@@ -29,7 +29,7 @@ class DatabaseController extends MasterController {
 	}
 
 	public function add(){
-
+		
 	}
 
 	public function edit(){

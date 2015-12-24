@@ -31,7 +31,7 @@ class CollectionController extends MasterController {
 
 	}
 
-	public function add(){
+	public function add($dbName){
 
 	}
 

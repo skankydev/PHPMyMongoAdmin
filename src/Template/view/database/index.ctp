@@ -13,9 +13,9 @@
 		<tbody>
 			<?php foreach ($dbList as $db): ?>
 				<tr>
-					<td><?php echo $this->link($db['name'],['action'=>'view','params'=>['name'=>$db['name']]]); ?></td>
-					<td><?php echo $db['size']; ?></td>
-					<td><?php echo $this->link('drop',['action'=>'drop','params'=>['name'=>$db['name']]],['onclick'=>"return confirm('Are you sure?')"]); ?></td>
+					<td><?php echo $this->link($db->getName(),['action'=>'view','params'=>['name'=>$db->getName()]]); ?></td>
+					<td><?php echo $this->Size->bytesToSize($db->getSizeOnDisk()); ?></td>
+					<td><?php echo $this->link('drop',['action'=>'drop','params'=>['name'=>$db->getName()]],['onclick'=>"return confirm('Are you sure?')"]); ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

@@ -12,33 +12,21 @@
  *
  */
 
-namespace PHPMyMongoAdmin\Model;
+namespace PHPMyMongoAdmin\View\Helper;
 
-use MongoDB\Driver\Manager;
-use MongoDB\Client;
+use PHPMyMongoAdmin\View\Helper\MasterHelper;
+use PHPMyMongoAdmin\View\Helper\HtmlHelper;
+use PHPMyMongoAdmin\Utilities\Session;
 
-class MyManager
+class SizeHelper extends MasterHelper
 {
-	var $manager;
-	var $client;
 	
-	function __construct(){
-		$this->manager = new Manager("mongodb://localhost:27017");
-		$this->client = new Client('mongodb://localhost:27017');//merci de me faire faire plin de foit la meme chose !
-	}
-
-	function getDBList(){
-		$retour = [];
-		$result = $this->client->listDatabases();
-		foreach ($result as $key => $value) {
-			$retour[$key]['name'] = $value->getName();
-			$retour[$key]['size'] = $this->bytesToSize($value->getSizeOnDisk());
-			$retour[$key]['empty'] = $value->isEmpty();
-		}
-		return $retour;
+	function __construct($data = []){
+		
 	}
 
 	function bytesToSize($bytes, $precision = 2){  
+		//thx for the code
 		$kilobyte = 1024;
 		$megabyte = $kilobyte * 1024;
 		$gigabyte = $megabyte * 1024;
@@ -57,5 +45,5 @@ class MyManager
 		} else {
 			return $bytes . ' B';
 		}
-	}
+	} 
 }

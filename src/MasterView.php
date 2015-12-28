@@ -17,6 +17,7 @@ use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\View\Helper\HtmlHelper;
 use PHPMyMongoAdmin\View\Helper\FormHelper;
 use PHPMyMongoAdmin\View\Helper\FlashMessagesHelper;
+use PHPMyMongoAdmin\View\Helper\SizeHelper;
 use PHPMyMongoAdmin\Utilities\Session;
 /**
 * 
@@ -30,7 +31,7 @@ class MasterView {
 	public $data = [];
 	public $layout = 'default';
 	public $displayLayout = true;
-	public $helpers = ['Form','FlashMessages'];
+	public $helpers = ['Form','FlashMessages','Size'];
 	
 
 	function __construct($request){
@@ -122,6 +123,7 @@ class MasterView {
 		return new MasterView($request);
 	}
 	
+	//fair comme les behavior ca va viendre vite
 	public function loadHelper(){
 		
 		if(!isset($this->Form)){
@@ -130,6 +132,11 @@ class MasterView {
 
 		if(!isset($this->FlashMessages)){
 			$this->FlashMessages = new FlashMessagesHelper($this->request->data);
+		}
+
+		if(!isset($this->Size)){
+			$this->Size = new SizeHelper($this->request->data);
+
 		}
 	}
 	

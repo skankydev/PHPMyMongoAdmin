@@ -32,7 +32,7 @@ class FormHelper extends MasterHelper {
 	 * create the form object 
 	 * @param array $data the data to put in input
 	 */
-	function __construct($data = []){
+	function __construct($data = array()){
 		$this->data = $data;
 		$this->dClass = Config::get('form.class');
 	}

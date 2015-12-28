@@ -1,23 +1,24 @@
-<?php 	use PHPMyMongoAdmin\Model\Collection\DatabaseCollection; ?>
+<?php 	use PHPMyMongoAdmin\Model\MyManager; ?>
 <aside id="SideBar">
 	<?php 
-		$manager = new DatabaseCollection('DataBase');//TO DO c'est moche !!
+		$manager = new MyManager();
 		$dbList = $manager->getDBList();
 		echo $this->link('creat database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
 	?>
 	<ul>
 	<?php foreach ($dbList as $db): ?>
-		<?php ob_start(); ?>
 		<li class="db-list">
 			<span class="db-name">
-				<?php echo $db->getName(); ?>
+				<?php echo $db['name']; ?>
 			</span>
 			<span class="db-size">
-				<?php echo $this->Size->bytesToSize($db->getSizeOnDisk()); ?>
+			<?php if (!$db['empty']): ?>
+				<?php echo $db['size']; ?>
+			<?php else: ?>
+				empty
+			<?php endif ?>
 			</span>
 		</li>
-		<?php $content = ob_get_clean(); ?>
-		<?php echo $this->link($content, ['controller'=>'database','action'=>'view','params'=>['dbName'=>$db->getName()]],['class'=>'db-link']);?>
 	<?php endforeach ?>
 	</ul>
 </aside>

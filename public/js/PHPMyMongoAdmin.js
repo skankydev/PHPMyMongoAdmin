@@ -13,4 +13,10 @@
 
 $(document).ready(function(){
 
+	$('.db-list').on('click',function(event){
+		var dbName = $(this).find('.db-name').html();
+		$.get('/collection/index/'+dbName,function(data){
+			$('#Contents').html(data);
+		})
+	});
 });

@@ -1,5 +1,5 @@
 <nav id="Menu">
 	<ul>
-		<li><a href="/">Database</a></li>
+		<li><a href="/">Home</a></li>
 	</ul>
 </nav>

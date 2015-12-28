@@ -26,7 +26,7 @@ class FlashMessagesHelper extends MasterHelper {
 	use HtmlHelper;
 
 	private $default = [
-		'tags' => ['div','div'],
+		'tags' => ['div','span'],
 		'attr' => ['class'=>'success']
 	];
 

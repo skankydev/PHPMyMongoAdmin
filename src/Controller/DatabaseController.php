@@ -28,26 +28,8 @@ class DatabaseController extends MasterController {
 		$this->view->set(['dbName' => $dbName,'collectionList'=>$collectionList]);
 	}
 
-	public function add($dbName = ''){
-		$data = [];
-		if($this->request->isPost()){
-			$data = (object)$this->request->data;
-			$option = [];
-			$option['autoIndexId'] = isset($data->autoIndexId);
-			if(isset($data->capped)){
-				$option['capped'] = true;
-				$option['size'] = (int)$data->size;
-				if(!empty($data->max)){
-					$option['max'] = (int)$data->max;
-				}
-			}
-			if($this->Database->createCollection($data->database,$data->collection,$option)){
-				$this->FlashMessages->set("The Collection $data->collection has been create",['class' => 'success']);
-				$this->request->redirect(['controller'=>'database','action'=>'view','params'=>['dbName'=>$data->database]]);
-			}
-			$this->request->data = $data;
-		}
-		$this->view->set(['data'=>$data,'dbName'=>$dbName]);
+	public function add(){
+		
 	}
 
 	public function edit(){
@@ -56,17 +38,5 @@ class DatabaseController extends MasterController {
 
 	public function delete(){
 
-	}
-
-	public function drop($dbName = ''){
-		if(!empty($dbName)){
-			$result = $this->Database->dropDatabase($dbName);
-			if(isset($result->dropped)){
-				$this->FlashMessages->set("The Database $dbName has been dropped",['class' => 'success']);
-			}else{
-				$this->FlashMessages->set("An error occurred when dropping $dbName",['class' => 'error']);
-			}
-			$this->request->redirect('/');
-		}
 	}
 }

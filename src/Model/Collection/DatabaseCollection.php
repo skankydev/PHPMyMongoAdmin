@@ -35,24 +35,40 @@ class DatabaseCollection extends MasterCollection {
 	function getDBList(){
 		$retour = [];
 		$result = $this->client->listDatabases();
-		return $result;
+		foreach ($result as $key => $value) {
+			$retour[$key]['name'] = $value->getName();
+			$retour[$key]['size'] = $this->bytesToSize($value->getSizeOnDisk());
+			$retour[$key]['empty'] = $value->isEmpty();
+		}
+		return $retour;
 	}
 
 	function getCollectionList($dbName){
-		$database = new Database($this->manager,$dbName);
+		$this->database = new Database($this->manager,$dbName);
 		$retour = [];
-		$result = $database->listCollections();
+		$result = $this->database->listCollections();
 		return $result;
 	}
 
-	function dropDatabase($dbName){
-		$database = new Database($this->manager,$dbName);
-		return $database->drop();
-	}
+	//TODO je doit caser ca dans un helper!
+	function bytesToSize($bytes, $precision = 2){  
+		$kilobyte = 1024;
+		$megabyte = $kilobyte * 1024;
+		$gigabyte = $megabyte * 1024;
+		$terabyte = $gigabyte * 1024;
 
-	function createCollection($dbName,$cName,$option = []){
-		$database = new Database($this->manager,$dbName);
-		$result = $database->createCollection($cName,$option);//trow exception if not valide
-		return true;
+		if (($bytes >= 0) && ($bytes < $kilobyte)) {
+			return $bytes . ' B';
+		} elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
+			return round($bytes / $kilobyte, $precision) . ' KB';
+		} elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
+			return round($bytes / $megabyte, $precision) . ' MB';
+		} elseif (($bytes >= $gigabyte) && ($bytes < $terabyte)) {
+			return round($bytes / $gigabyte, $precision) . ' GB';
+		} elseif ($bytes >= $terabyte) {
+			return round($bytes / $terabyte, $precision) . ' TB';
+		} else {
+			return $bytes . ' B';
+		}
 	}
 }

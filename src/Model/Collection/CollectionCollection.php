@@ -22,7 +22,7 @@ use MongoDB\Collection;
 
 use stdClass;
 
-class DocumentCollection extends MasterCollection {
+class CollectionCollection extends MasterCollection {
 
 	var $manager;
 	private $defaultQuery = ['query'=>[]];

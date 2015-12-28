@@ -16,7 +16,7 @@ namespace PHPMyMongoAdmin\Controller;
 use PHPMyMongoAdmin\MasterController;
 
 
-class DocumentController extends MasterController {
+class CollectionController extends MasterController {
 
 	function index($cName, $page = 1){
 		$option = [

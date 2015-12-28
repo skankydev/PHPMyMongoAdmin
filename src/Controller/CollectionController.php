@@ -31,7 +31,7 @@ class CollectionController extends MasterController {
 
 	}
 
-	public function add($dbName){
+	public function add($dbName = ''){
 
 	}
 
@@ -41,5 +41,18 @@ class CollectionController extends MasterController {
 
 	public function delete(){
 
+	}
+
+	public function drop($cName = ''){
+		if(!empty($cName)){
+			$result = $this->Collection->dropCollection($cName);
+			if($result->ok==1){
+				$this->FlashMessages->set("The Collection $cName has been dropped",['class' => 'success']);
+			}else{
+				$this->FlashMessages->set("An error occurred when dropping $cName: $result->errmsg",['class' => 'error']);
+			}
+			$tmp = explode('.',$cName);
+			$this->request->redirect(['controller'=>'database','action'=>'view','params'=>['dbName'=>$tmp[0]]]);
+		}
 	}
 }

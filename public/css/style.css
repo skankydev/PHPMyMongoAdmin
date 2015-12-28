@@ -144,6 +144,116 @@ dd{
 	left: -8px;
 }
 
+/*---------------Form------------------*/
+form {
+	clear: both;
+}
+fieldset {
+	border: none;
+	-webkit-appearance: none;
+	outline: none;
+}
+fieldset legend {
+	color: #484E52;
+	font-size: 0.8em;
+	font-style: italic;
+	margin-bottom: 1em;
+}
+
+form div {
+	clear: both;
+	vertical-align: text-top;
+}
+
+form .hidden{
+	display: none
+}
+
+form .required {
+	font-weight: bold;
+}
+form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+form div.submit {
+	border: 0;
+	clear: both;
+	margin-top: 10px;
+}
+label {
+	display: inline-block;
+	margin-bottom:3px;
+	width: 30%;
+
+	font-size: 0.9em;
+	text-transform: capitalize;
+	text-align: right;
+}
+input,
+textarea {
+	padding: 3px;
+	margin: 3px;
+	background-color: transparent;
+	border: 1px solid #CED2CF;
+}
+input:focus{
+	
+}
+
+textarea:focus {
+
+}
+
+select {
+	clear: both;
+	font-size: 100%;
+	width: 60%;
+	vertical-align: text-center;
+	padding: 2px;
+}
+select[multiple=multiple] {
+	width: 100%;
+}
+option {
+	font-size: 1em;
+	padding: 0 3px;
+}
+input[type=checkbox] {
+	margin: 0px 6px 7px 2px;
+	width: auto;
+}
+
+div.checkbox label {
+	position: inherit;
+	transform:none;
+}
+
+input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 6px 0;
+	padding: 0;
+	line-height: 26px;
+}
+button[type=submit]{
+	
+}
+.radio label {
+	margin: 0 0 6px 20px;
+	line-height: 26px;
+}
+input:invalid{
+	box-shadow: none;
+}
+input[type=submit] {
+	display: inline;
+	font-size: 1.1em;
+	width: auto;
+}
+
+
 *[class^="btn-"] {
 	display: inline-block;
 	height: 32px;
@@ -272,13 +382,29 @@ dd{
 	vertical-align: top;
 	padding-top: 8px;
 }
+.db-link{
+	text-decoration: none;
+	color:#000;
+}
+
+.db-link:hover{
+	background-color: #DEDEDE;
+}
 .db-list{
 	margin: 0 8px;
 	padding: 8px 4px;
 	border-bottom: 1px dashed #303030;
 }
-.db-list:hover{
-	background-color: #DEDEDE;
+.db-name{
+	color:#000;
+	line-height: 20px;
+}
+.db-size{
+	color:#303030;
+	font-size: 0.8em;
+	font-style: italic;
+	float: right;
+	line-height: 20px;
 }
 .document{
 	padding: 8px;
@@ -291,8 +417,6 @@ dd{
 .flash-message{
 	border: 1px solid #BEBEBE;
 	border-radius: 2px;
-	display: inline-block;
-	width: 100%;
 	margin: 8px;
 	padding: 4px;
 }

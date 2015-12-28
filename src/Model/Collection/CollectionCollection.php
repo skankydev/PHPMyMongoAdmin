@@ -27,12 +27,12 @@ class CollectionCollection extends MasterCollection {
 	var $manager;
 	private $defaultQuery = ['query'=>[]];
 
-	function __construct($name){
+	public function __construct($name){
 		parent::__construct($name);
 		$this->manager = new Manager("mongodb://localhost:27017");
 	}
 
-	function getList($collectionName,$option = []){
+	public function getList($collectionName,$option = []){
 		$collection = new collection($this->manager,$collectionName);
 		$option = array_replace_recursive($this->defaultQuery,$option);
 		$dOption = Config::get('paginator');
@@ -52,6 +52,11 @@ class CollectionCollection extends MasterCollection {
 
 		return $paginator;
 		
+	}
+
+	public function dropCollection($collectionName){
+		$collection = new collection($this->manager,$collectionName);
+		return $collection->drop();
 	}
 
 }

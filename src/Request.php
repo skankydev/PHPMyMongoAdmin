@@ -51,9 +51,26 @@ class Request {
 		$this->history = new Historique();
 
 		if($this->isPost()){
-			$this->data = $_POST;
+			$this->data = (object)$_POST;
 		}
 	}
+
+	public function getPost($name = ''){
+		if($this->isPost()){
+			if(empty($name)){
+				return $_POST;
+			}else{
+				return $_POST[$name];
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * ca viendra un jour
+	 * @param  string $name [description]
+	 * @return [type]       [description]
+	 */
 	public function getParams($name = ''){
 		if(empty($name)){
 			return $this->params;

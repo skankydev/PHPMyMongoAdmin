@@ -2,6 +2,11 @@
 	<header>
 		<h1>Database</h1>
 	</header>
+	<nav>
+		<ul>
+			<li><?php echo $this->link('create database', ['controller'=>'database','action'=>'add']);?></li>
+		</ul>
+	</nav>
 	<table>
 		<thead>
 			<tr>

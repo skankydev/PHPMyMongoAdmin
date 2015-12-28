@@ -152,7 +152,6 @@ class FormHelper extends MasterHelper {
 				$class .= ' not-valid';
 				$message = '<span class="valid-message">'.$this->data->messageValidate[$key].'</span>';
 			}
-			//$retour .= '<div class="input '.$class.'">';
 			$label = '';
 			if(isset($value['label'])){
 				$lAttr = ['for'=>$key];

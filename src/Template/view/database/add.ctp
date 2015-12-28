@@ -17,7 +17,6 @@ $params = [];
 		<?php endif ?>
 	</header>
 	<?php echo $this->Form->start($this->request->url(['action'=>'add','params'=>$params])); ?>
-	<section>
 		<?php echo $this->Form->fieldset([
 			'legend'  => ['content'=>'creat a new collection','class'=>'legend'],
 			'input'   => [
@@ -30,7 +29,6 @@ $params = [];
 				]
 		]); ?>
 		<?php echo $this->Form->submit('Send'); ?>
-	</section>
 	<?php echo $this->Form->end(); ?>
 	<footer>
 		<a href="https://docs.mongodb.org/v3.0/reference/method/db.createCollection/" target="_blank">documentation</a>

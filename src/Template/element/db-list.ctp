@@ -7,17 +7,17 @@
 	?>
 	<ul>
 	<?php foreach ($dbList as $db): ?>
-		<?php ob_start(); ?>
 		<li class="db-list">
-			<span class="db-name">
-				<?php echo $db->getName(); ?>
-			</span>
-			<span class="db-size">
-				<?php echo $this->Size->bytesToSize($db->getSizeOnDisk()); ?>
-			</span>
+			<?php ob_start(); ?>
+				<span class="db-name">
+					<?php echo $db->getName(); ?>
+				</span>
+				<span class="db-size">
+					<?php echo $this->Size->bytesToSize($db->getSizeOnDisk()); ?>
+				</span>
+			<?php $content = ob_get_clean(); ?>
+			<?php echo $this->link($content, ['controller'=>'database','action'=>'view','params'=>['dbName'=>$db->getName()]],['class'=>'db-link']);?>
 		</li>
-		<?php $content = ob_get_clean(); ?>
-		<?php echo $this->link($content, ['controller'=>'database','action'=>'view','params'=>['dbName'=>$db->getName()]],['class'=>'db-link']);?>
 	<?php endforeach ?>
 	</ul>
 </aside>

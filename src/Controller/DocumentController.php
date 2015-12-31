@@ -18,26 +18,37 @@ use PHPMyMongoAdmin\MasterController;
 
 class DocumentController extends MasterController {
 
-	function index(){
-		$dbList = $this->Document->getDBList();
-		$this->view->set(['dbList' => $dbList]);
+	function index($namespace,$id=''){
+		$document = new \stdClass();
+		$data = ['namespace' => $namespace];
+		if(!empty($id)){
+			$data['doc'] = $this->Document->read($namespace,$id);
+		}
+		$this->view->set($data);
 	}
 
-	public function view($dbName = ''){
-		$collectionList = $this->Document->getCollectionList($dbName);
-		$this->view->set(['dbName' => $dbName,'collectionList'=>$collectionList]);
+	public function add($namespace){
+		if($this->request->isPost()){
+			$data = $this->request->getPost('json');
+			$data = json_decode($data);
+			$result = $this->Document->insert($namespace,$data);
+			$id = $result->getInsertedId();
+			//reponse en json
+			//$this->FlashMessages->set("The Document has been create",['class' => 'success']);
+			//$this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+		}
 	}
 
-	public function add($dbName = ''){
-
-	}
-
-	public function edit(){
-
+	public function edit($namespace,$id){
+		if($this->request->isPost()){
+			$data = $this->request->getPost('json');
+			$data = json_decode($data);
+			$result = $this->Document->update($namespace,$data,$id);
+		}
 	}
 
 	public function delete(){
-
+		//findOneAndDelete( array|object $filter, array $options = [] )
 	}
 
 }

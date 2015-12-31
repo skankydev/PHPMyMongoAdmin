@@ -17,7 +17,10 @@
 		<?php echo $this->Form->submit('Send'); ?>
 	<?php echo $this->Form->end(); ?>
 	<footer>
-		
+		<h4>User Manual</h4>
+		<ul>
+			<li><a href="https://docs.mongodb.org/manual/core/indexes/" target="_blank">Index Concepts</a></li>
+		</ul>	
 	</footer>
 </section>
 <?php $this->startScript() ?>

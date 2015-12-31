@@ -169,7 +169,8 @@ class FormHelper extends MasterHelper {
 			}else{
 				$input .= $this->input($key,$value);
 			}
-			$contentDiv .= ($value['type']==='checkbox')? $input.$label:$label.$input;
+			$contentDiv .= $label.$input;
+			//$contentDiv .= ($value['type']==='checkbox')? $input.$label:$label.$input;
 			$contentDiv .= $message;
 
 			$retour .= $this->surround($contentDiv,'div',['class'=>$class]);

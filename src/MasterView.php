@@ -32,6 +32,9 @@ class MasterView {
 	public $layout = 'default';
 	public $displayLayout = true;
 	public $helpers = ['Form','FlashMessages','Size'];
+
+	private $css = '';
+	private $js = '';
 	
 
 	function __construct($request){
@@ -93,23 +96,43 @@ class MasterView {
 	public function fetch($var){
 		echo $this->{$var};
 	}
-
-	public function set($key,$valeur=null){
+	
+	/**
+	 * set variable for view 
+	 * @param string|array $key   the name or combo name => value
+	 * @param mixed $valeur the value
+	 */
+	public function set($key,$value=null){
 		if(is_array($key)){
 			$this->data += $key;
 		}else{
-			$this->data[$key] = $valeur;
+			$this->data[$key] = $value;
 		}
 	}
-
-	public function setHelper($key,$valeur=null){
-		if(is_array($key)){
-			$this->helpers += $key;
-		}else{
-			$this->helpers[$key] = $valeur;
-		}
+	
+	/**
+	 * add css file for header
+	 * @param string $path the path to the file
+	 */
+	public function addCss($path){
+		$this->css .= '<link href="'.$path.'" rel="stylesheet" type="text/css">'.PHP_EOL;
 	}
 
+	/**
+	 * add js file for header
+	 * @param string $path the path to the file
+	 */
+	public function addJs($path){
+		$this->js .= '<script src="'.$path.'"></script>'.PHP_EOL;
+	}
+
+	/**
+	 * get header option 
+	 * @return string html header option
+	 */
+	public function getHeader(){
+		return $this->css.$this->js;
+	}
 	/**
 	 * TODO tu a rien foutu mec fo retravailler ca !
 	 */

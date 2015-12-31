@@ -19,6 +19,8 @@ use PHPMyMongoAdmin\Utilities\Paginator;
 
 use MongoDB\Driver\Manager;
 use MongoDB\Collection;
+use MongoDB\BSON\ObjectID;
+use MongoDB\Driver\BulkWrite;
 
 use stdClass;
 
@@ -30,5 +32,44 @@ class DocumentCollection extends MasterCollection {
 	public function __construct($name){
 		parent::__construct($name);
 		$this->manager = new Manager("mongodb://localhost:27017");
+	}
+
+	public function read($namespace,$id){
+		$result = [];
+		$collection = new Collection($this->manager,$namespace);
+		$id = new ObjectID($id);
+		$result = $collection->findOne(['_id'=>$id]);
+		return $result;
+	}
+
+	public function update($namespace,$data,$id){
+		$result = [];
+		$collection = new Collection($this->manager,$namespace);
+		$id = new ObjectID($id);
+		debug($data);
+		unset($data->_id);
+		
+		$bulk = new BulkWrite();
+		$bulk->update(['_id'=>$id],$data);
+		$this->manager->executeBulkWrite($namespace,$bulk);//delet empty value
+		
+		//$result = $collection->updateOne(['_id'=>$id],['$set'=>$data]);//keep empty value
+		return $result;
+	}
+
+	public function insert($namespace,$data){
+		$result = [];
+		$collection = new Collection($this->manager,$namespace);
+		$result = $collection->insertOne($data);
+
+		return $result;
+	}
+
+	public function delete($namespace,$id=''){
+		$result = [];
+		if(empty($id)){
+			
+		}
+		return $result;
 	}
 }

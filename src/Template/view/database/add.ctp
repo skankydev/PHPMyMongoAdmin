@@ -31,7 +31,10 @@ $params = [];
 		<?php echo $this->Form->submit('Send'); ?>
 	<?php echo $this->Form->end(); ?>
 	<footer>
-		<a href="https://docs.mongodb.org/v3.0/reference/method/db.createCollection/" target="_blank">documentation</a>
+	<h4>User Manual</h4>
+	<ul>
+		<li><a href="https://docs.mongodb.org/v3.0/reference/method/db.createCollection/" target="_blank">collection</a></li>
+	</ul>
 	</footer>
 </section>
 

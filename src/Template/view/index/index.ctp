@@ -2,7 +2,7 @@
 	<header><h1>Index OF :<?php echo $namespace; ?></h1> </header>
 	<nav>
 		<ul>
-			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]]);?></li>
+			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]],['class'=>'btn-menu info']);?></li>
 		</ul>
 	</nav>
 	<table>

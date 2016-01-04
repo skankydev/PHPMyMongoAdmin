@@ -27,19 +27,18 @@ class IndexCollection extends MasterCollection {
 	var $manager;
 	private $defaultQuery = ['query'=>[]];
 
-	public function __construct($name){
-		parent::__construct($name);
-		$this->manager = new Manager("mongodb://localhost:27017");
-	}
-
 	public function getList($namespace){
 		$collection = new Collection($this->manager,$namespace);
 		return $collection->listIndexes();
 	}
 
-	public function createIndex($namespace,$index,$option = []){
+	public function createIndexes($namespace,$index){
 		$collection = new Collection($this->manager,$namespace);
-		debug($index);die();
-		return $collection->createIndexs($index);
+		return $collection->createIndexes($index);
+	}
+
+	public function dropIndex($namespace,$index){
+		$collection = new Collection($this->manager,$namespace);
+		return $collection->dropIndex($index);
 	}
 }

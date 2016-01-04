@@ -1,18 +1,11 @@
 <?php 
 return [
 	'db' => [
-		'MySQL' => [
-			'host'=>'localhost',
-			'user'=>'root',
-			'pass'=>'',
-			'database'=>'skankytest',
-		],
 		'MongoDB' =>[
 			'host'=>'localhost',
 			'port'=>'27017',
 			'user'=>'admin',
-			'pass'=>'',
-			'database'=>'skankydev',
+			'pass'=>''
 		]
 	],
 	'routes' =>[

@@ -28,27 +28,58 @@ class DocumentController extends MasterController {
 	}
 
 	public function add($namespace){
+		$this->view->displayLayout = false;
+		$fView['namespace'] = $namespace;
+		$fView['message'] = '';
+		$fView['result'] = true;
 		if($this->request->isPost()){
-			$data = $this->request->getPost('json');
-			$data = json_decode($data);
-			$result = $this->Document->insert($namespace,$data);
-			$id = $result->getInsertedId();
+			try {
+				$data = $this->request->getPost('json');
+				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
+				$result = $this->Document->insert($namespace,$data);
+				$data->_id = $result->getInsertedId();
+			} catch (Exception $e) {
+				$fView['result'] = false;
+				$fView['message'] = $e->message;
+			}
+			$fView['data'] = $data;
+			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
 			//reponse en json
-			//$this->FlashMessages->set("The Document has been create",['class' => 'success']);
-			//$this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+			if($fView['result']){
+				$this->FlashMessages->set("The Document has been create",['class' => 'success']);
+			}
 		}
+		$this->view->set(['json'=>$fView]);
 	}
 
 	public function edit($namespace,$id){
+		$this->view->displayLayout = false;
+		$fView['namespace'] = $namespace;
+		$fView['message'] = '';
+		$fView['result'] = true;
 		if($this->request->isPost()){
-			$data = $this->request->getPost('json');
-			$data = json_decode($data);
-			$result = $this->Document->update($namespace,$data,$id);
+			try {
+				$data = $this->request->getPost('json');
+				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
+				$result = $this->Document->update($namespace,$data,$id);				
+			} catch (Exception $e) {
+				$fView['result'] = false;
+				$fView['message'] = $e->message;				
+			}
+			$fView['data'] = $data;
+			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+			if($fView['result']){
+				$this->FlashMessages->set("The Document has been updated",['class' => 'success']);
+			}
 		}
+		$this->view->set(['json'=>$fView]);
 	}
 
-	public function delete(){
-		//findOneAndDelete( array|object $filter, array $options = [] )
+	public function delete($namespace,$id){
+		$this->Document->delete($namespace,$id);
+		$this->FlashMessages->set("The Document $id has been dropped",['class' => 'success']);
+		$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['$namespace'=>$namespace]]);
+		
 	}
 
 }

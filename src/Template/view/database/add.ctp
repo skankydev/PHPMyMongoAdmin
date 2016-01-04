@@ -1,6 +1,6 @@
 <?php 
 $dbOption = ['label'=>'Database name','required'=>'required'];
-$params = [];
+$params = ['pattern'=>'[a-zA-Z.]*','title'=>"a-z A-z ."];
  ?>
 <section id="create-collection">
 	<header>
@@ -21,7 +21,7 @@ $params = [];
 			'legend'  => ['content'=>'creat a new collection','class'=>'legend'],
 			'input'   => [
 					'database'       => $dbOption,
-					'collection'     => ['label'=>'Collection name','required'=>'required'],
+					'collection'     => ['label'=>'Collection name','required'=>'required','pattern'=>'[a-zA-Z.]*','title'=>"a-z A-Z ."],
 					'autoIndexId'    => ['label'=>'auto index','type'=>'checkbox','checked'=>'checked'],
 					'capped'         => ['label'=>'capped','type'=>'checkbox'],
 					'size'           => ['label'=>'size','type'=>'number'],
@@ -32,9 +32,11 @@ $params = [];
 	<?php echo $this->Form->end(); ?>
 	<footer>
 	<h4>User Manual</h4>
-	<ul>
-		<li><a href="https://docs.mongodb.org/v3.0/reference/method/db.createCollection/" target="_blank">collection</a></li>
-	</ul>
+	<nav>
+		<ul>
+			<li><a href="https://docs.mongodb.org/v3.0/reference/method/db.createCollection/" target="_blank">collection</a></li>
+		</ul>
+	</nav>
 	</footer>
 </section>
 

@@ -41,6 +41,7 @@ class PHPMyMongoAdmin {
 		} catch (\Exception $e) {
 			var_dump($e->getCode().' : '.$e->getMessage());
 			var_dump($e);
+			//echo $e->xdebug_message;
 			//TO DO fair des view pour les erreur
 		}
 	}

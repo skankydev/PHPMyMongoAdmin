@@ -26,12 +26,6 @@ class DatabaseCollection extends MasterCollection {
 	var $manager;
 	var $database;
 
-	function __construct($name){
-		parent::__construct($name);
-		$this->manager = new Manager("mongodb://localhost:27017");
-		$this->client = new Client('mongodb://localhost:27017');
-	}
-
 	function getDBList(){
 		$retour = [];
 		$result = $this->client->listDatabases();

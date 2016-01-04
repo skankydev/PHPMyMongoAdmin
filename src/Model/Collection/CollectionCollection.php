@@ -27,11 +27,6 @@ class CollectionCollection extends MasterCollection {
 	var $manager;
 	private $defaultQuery = ['query'=>[]];
 
-	public function __construct($name){
-		parent::__construct($name);
-		$this->manager = new Manager("mongodb://localhost:27017");
-	}
-
 	public function getList($collectionName,$option = []){
 		$collection = new collection($this->manager,$collectionName);
 		$option = array_replace_recursive($this->defaultQuery,$option);

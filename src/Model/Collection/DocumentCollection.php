@@ -29,11 +29,6 @@ class DocumentCollection extends MasterCollection {
 	var $manager;
 	private $defaultQuery = ['query'=>[]];
 
-	public function __construct($name){
-		parent::__construct($name);
-		$this->manager = new Manager("mongodb://localhost:27017");
-	}
-
 	public function read($namespace,$id){
 		$result = [];
 		$collection = new Collection($this->manager,$namespace);
@@ -46,14 +41,12 @@ class DocumentCollection extends MasterCollection {
 		$result = [];
 		$collection = new Collection($this->manager,$namespace);
 		$id = new ObjectID($id);
-		debug($data);
 		unset($data->_id);
-		
 		$bulk = new BulkWrite();
 		$bulk->update(['_id'=>$id],$data);
-		$this->manager->executeBulkWrite($namespace,$bulk);//delet empty value
+		$this->manager->executeBulkWrite($namespace,$bulk);//delete unset value
 		
-		//$result = $collection->updateOne(['_id'=>$id],['$set'=>$data]);//keep empty value
+		//$result = $collection->updateOne(['_id'=>$id],['$set'=>$data]);//keep unset value
 		return $result;
 	}
 
@@ -61,15 +54,16 @@ class DocumentCollection extends MasterCollection {
 		$result = [];
 		$collection = new Collection($this->manager,$namespace);
 		$result = $collection->insertOne($data);
-
+		
 		return $result;
 	}
 
-	public function delete($namespace,$id=''){
+	public function delete($namespace,$id){
 		$result = [];
-		if(empty($id)){
-			
-		}
+		$collection = new Collection($this->manager,$namespace);
+		$id = new ObjectID($id);
+		$result = $collection->findOneAndDelete(['_id'=>$id]);
 		return $result;
 	}
+
 }

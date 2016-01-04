@@ -2,9 +2,9 @@
 	<header>
 		<h1>Database</h1>
 	</header>
-	<nav>
+	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('create database', ['controller'=>'database','action'=>'add']);?></li>
+			<li><?php echo $this->link('create database', ['controller'=>'database','action'=>'add'],['class'=>'btn-menu-database info']);?></li>
 		</ul>
 	</nav>
 	<table>

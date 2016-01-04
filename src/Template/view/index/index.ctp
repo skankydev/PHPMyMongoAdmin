@@ -1,6 +1,6 @@
 <section>
 	<header><h1>Index OF :<?php echo $namespace; ?></h1> </header>
-	<nav>
+	<nav class="pages-menu">
 		<ul>
 			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]],['class'=>'btn-menu info']);?></li>
 		</ul>
@@ -19,17 +19,18 @@
 		</thead>
 		<tbody>
 			<?php foreach ($list as $index): ?>
-				<tr>
-					<td><?php echo $index->getName(); ?></td>
-					<td><pre><?php echo json_encode($index->getKey(),JSON_PRETTY_PRINT); ?></pre></td>
-					<td><?php echo $index->isSparse()?'yes':'no'; ?></td>
-					<td><?php echo $index->isTtl()?'yes':'no'; ?></td>
-					<td><?php echo $index->isUnique()?'yes':'no'; ?></td>
-					<td><?php echo $index->getVersion(); ?></td>
-					<td></td>
-				</tr>
+			<tr>
+				<td><?php echo $index->getName(); ?></td>
+				<td><?php echo json_encode($index->getKey(),JSON_PRETTY_PRINT); ?></td>
+				<td><?php echo $index->isSparse()?'yes':'no'; ?></td>
+				<td><?php echo $index->isTtl()?'yes':'no'; ?></td>
+				<td><?php echo $index->isUnique()?'yes':'no'; ?></td>
+				<td><?php echo $index->getVersion(); ?></td>
+				<td><?php echo $this->link('drop', ['action'=>'drop','params'=>['namespace'=>$namespace,'index'=>$index->getName()]]);?></td>
+			</tr>
 			<?php endforeach ?>			
 		</tbody>
 	</table>
-	<footer></footer>
+	<footer>
+	</footer>
 </section>

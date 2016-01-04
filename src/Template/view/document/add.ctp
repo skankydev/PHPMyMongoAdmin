@@ -1,1 +1,1 @@
-add.ctp
+<?php echo json_encode($json); ?>

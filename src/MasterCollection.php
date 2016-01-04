@@ -14,6 +14,15 @@
 namespace PHPMyMongoAdmin;
 
 use PHPMyMongoAdmin\Config\Config;
+
+use MongoDB\Driver\Manager;
+use MongoDB\Driver\BulkWrite;
+
+use MongoDB\BSON\ObjectID;
+
+use MongoDB\Collection;
+use MongoDB\Client;
+use MongoDB\Database;
 /**
 * 
 */
@@ -29,6 +38,10 @@ class MasterCollection
 	function __construct($name){
 		$this->collectionName = strtolower($name);
 		$this->loadBehavior();
+		$dbConnect = Config::getDbConf('MongoDB');
+		$uri = 'mongodb://'.$dbConnect['host'].':'.$dbConnect['port'];
+		$this->manager = new Manager($uri);
+		$this->client = new Client($uri);
 	}
 
 	/**

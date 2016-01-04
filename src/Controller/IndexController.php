@@ -25,7 +25,12 @@ class IndexController extends MasterController {
 
 	public function add($namespace){
 		if($this->request->isPost()){
-			debug($this->request->data);
+			$this->view->displayLayout = false;
+			$data = $this->request->getPost('json');
+			$data = json_decode($data,true);
+			$this->Index->createIndexes($namespace,$data);
+			debug($data);
+			die();
 		}
 		$this->view->set(['namespace'=>$namespace]);
 	}
@@ -34,8 +39,8 @@ class IndexController extends MasterController {
 		
 	}
 
-	public function delete($namespace){
-
+	public function drop($namespace,$index){
+		$this->Index->dropIndex($namespace,$index);
 	}
 
 }

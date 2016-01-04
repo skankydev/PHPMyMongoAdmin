@@ -25,6 +25,10 @@ nav li{
 footer{
 	padding-top: 8px;
 }
+footer nav ul,
+footer nav li{
+	display: list-item;
+}
 .clear{
 	clear: both;
 }
@@ -270,6 +274,7 @@ input[type="file"] + label{
 	margin: 8px;
 	padding: 0 4px;
 	line-height: 28px;
+	vertical-align: top;
 
 	font-family: Akzidenz,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	text-decoration: none;
@@ -305,17 +310,22 @@ input[type="file"] + label{
 *[class^="btn-menu"]{
 	height: 24px;
 	line-height: 22px;
-	padding: 0 4px;
-	vertical-align: top;
 	margin: 0;
+	background-color: rgba(30,30,255,0.1);
+	border-color: rgba(30,30,255,1);
+}
+*[class^="btn-menu"]:hover{
+	background-color: rgba(30,30,255,0.5);
+	border-color: rgba(30,30,255,1);
 }
 *[class^="btn-action"]{
 	height: 24px;
+	width: 24px;
+	border-radius: 3px;
 	line-height: 22px;
-	padding: 0 4px;
-	vertical-align: top;
 	margin: 0;
 }
+
 /*-------------header-------------------*/
 #Header{
 	background-color: #69b241;
@@ -391,7 +401,11 @@ input[type="file"] + label{
 #Menu a:hover:after{
 	transform: rotate3d(1,0,0,0deg);
 }
+.pages-menu{
+	padding-bottom: 4px;
+}
 
+/*--------------------------------*/
 #SideBar{
 	display: inline-block;
 	width: 25%;
@@ -401,12 +415,16 @@ input[type="file"] + label{
 	vertical-align: top;
 	padding-top: 8px;
 }
+
+/*--------------------------------*/
 #Contents{
 	display: inline-block;
 	width: 74%;
 	vertical-align: top;
 	padding-top: 8px;
 }
+
+
 .db-link{
 	color: #000;
 	display: block;
@@ -443,23 +461,26 @@ input[type="file"] + label{
 	padding: 8px;
 	margin:8px;
 	border-radius: 5px;
-	background-color: #EEE;
+	background-color: #FEFEFE;
 	border: 1px solid #DEDEDE;
 }
 #Document nav{
 	margin-bottom: 4px;
 }
-/*-----------correction-------------------*/
-#editor {
-	height: 600px;
+.cleafix{
+	overflow: auto;
 }
-#editor td,
-#editor th {
+#editor {
+	height: 500px;
+}
+
+#editor td,#many-editor td,
+#editor th,#many-editor th {
 	padding: 0;
 	border-bottom: none;
 }
-#editor tbody,
-#editor table{
+#many-editor tbody,#editor tbody,
+#many-editor table,#editor table{
 	width: auto;
 	border: none;
 }

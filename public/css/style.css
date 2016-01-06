@@ -67,9 +67,9 @@ dd{
 	left: -8px;
 }
 
-a,
-a:visited{
-
+a{
+	text-decoration: none;
+	color: blue;
 }
 
 a:hover{
@@ -256,12 +256,12 @@ input[type=submit] {
 	font-size: 1.1em;
 	width: auto;
 }
-input[type=file] {
+nav input[type=file] {
 
 	display: none;
 }
-input[type="file"] + label,  
-input[type="file"] + label{  
+nav input[type="file"] + label,  
+nav input[type="file"] + label{  
 	cursor: pointer;
 	width: auto;
 	padding: 0 4px;
@@ -280,13 +280,12 @@ input[type="file"] + label{
 	text-decoration: none;
 	text-align: center;
 	color: #000;
-
+	
 	border-radius: 1px;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #69b241;
-
-	background-color: #FFF;
+	background-color : rgba(105,178,65,0.1);
+	border-color : rgba(105,178,65,1);
 	transition:all 0.1s;
 
 	cursor: pointer;
@@ -300,32 +299,39 @@ input[type="file"] + label{
 }
 
 *[class^="btn-"]:hover{
-	background-color: #DEDEDE;
+	background-color : rgba(105,178,65,0.8);
+	border-color : rgba(105,178,65,1);
 }
 
-.paging-disabled{
-	display: none;
-}
 
 *[class^="btn-menu"]{
 	height: 24px;
 	line-height: 22px;
 	margin: 0;
-	background-color: rgba(30,30,255,0.1);
-	border-color: rgba(30,30,255,1);
-}
-*[class^="btn-menu"]:hover{
-	background-color: rgba(30,30,255,0.5);
-	border-color: rgba(30,30,255,1);
 }
 *[class^="btn-action"]{
-	height: 24px;
-	width: 24px;
+	height: 26px;
+	width: 26px;
+	line-height: 24px;
 	border-radius: 3px;
-	line-height: 22px;
-	margin: 0;
-}
+	color: #000;
+    font-family: arial,sans-serif;
+    margin: 2px;
+    padding: 0;
 
+    border-radius: 2px;
+}
+.paging li{
+	display: inline-block;
+}
+.paging{
+	display: block;
+	text-align: center;
+}
+.paging-curent,
+.paging-disabled{
+	display: none;
+}
 /*-------------header-------------------*/
 #Header{
 	background-color: #69b241;
@@ -373,7 +379,7 @@ input[type="file"] + label{
 }
 #Menu a:before,
 #Menu a:after{
-	content: ' ';
+	content: '';
 	position: absolute;
 
 	height: 4px;
@@ -405,6 +411,12 @@ input[type="file"] + label{
 	padding-bottom: 4px;
 }
 
+.action-menu ul {
+    display: block;
+    text-align: right;
+}
+.action-menu{
+}
 /*--------------------------------*/
 #SideBar{
 	display: inline-block;
@@ -415,8 +427,6 @@ input[type="file"] + label{
 	vertical-align: top;
 	padding-top: 8px;
 }
-
-/*--------------------------------*/
 #Contents{
 	display: inline-block;
 	width: 74%;
@@ -424,7 +434,57 @@ input[type="file"] + label{
 	padding-top: 8px;
 }
 
+/*--------------------------------*/
+#Error {
+	width: 80%;
+	margin: auto;
+}
+#Error header{
+	margin-bottom: 8px;
+}
+#Error .debug-message{
+	border: none;
+}
+.legend{
+	color: #303030;
+	font-size: 0.8em;
+	font-style: italic;
+	line-height: 20px;
+}
+.trace{
+	display: block;
+	background-color:#BEBEBE;
+}
 
+.trace>div:nth-child(2n){
+	color: #FFF;
+	text-align: right;
+	background-color:#000;
+}
+div[class*='trace-']{
+	display: inline-block;
+	margin: 2px;
+}
+.trace-args{
+	text-align: left;
+	display: none;
+}
+.trace-type,
+.trace-function{
+	color:#7AA6DA;
+}
+.trace-class{
+	color: #04b431;
+}
+.trace-line{
+	font-weight: bold;
+}
+.hideaway-btn{
+	cursor: pointer;
+}
+
+
+.db-link-mini,
 .db-link{
 	color: #000;
 	display: block;
@@ -432,20 +492,21 @@ input[type="file"] + label{
 	padding: 4px 8px;
 	text-decoration: none;
 	width: 100%;
+	border-bottom: 2px dashed #303030;
 }
-.btn-creatdb{
-	box-shadow: 5px 5px 0 #000;
+
+.db-link-mini{
+	font-size: 0.8em;
+	width: 90%;
+	margin: auto;
+	border-width: 1px;
 }
-.btn-creatdb:hover{
-	box-shadow: 0 0 0 #000;
-}
+
+.db-link-mini:hover,
 .db-link:hover{
 	background-color: #DEDEDE;
 }
-.db-list{
-	margin: 0 8px;
-	border-bottom: 1px dashed #303030;
-}
+
 .db-name{
 	color:#000;
 	line-height: 20px;
@@ -464,6 +525,7 @@ input[type="file"] + label{
 	background-color: #FEFEFE;
 	border: 1px solid #DEDEDE;
 }
+.document nav,
 #Document nav{
 	margin-bottom: 4px;
 }
@@ -476,7 +538,6 @@ input[type="file"] + label{
 
 #editor td,#many-editor td,
 #editor th,#many-editor th {
-	padding: 0;
 	border-bottom: none;
 }
 #many-editor tbody,#editor tbody,
@@ -495,12 +556,12 @@ input[type="file"] + label{
 }
 
 .success{
-	background-color : rgba(46,255,60,0.1);
-	border-color : rgba(46,255,60,1);
+	background-color : rgba(105,178,65,0.1);
+	border-color : rgba(105,178,65,1);
 }
 .success:hover{
-	background-color : rgba(46,255,60,0.5);
-	border-color : rgba(46,255,60,1);
+	background-color : rgba(105,178,65,0.5);
+	border-color : rgba(105,178,65,1);/*#69b241*/
 }
 .warning{
 	background-color: rgba(255, 200, 142, 0.1);

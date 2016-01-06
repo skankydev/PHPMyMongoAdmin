@@ -28,7 +28,7 @@ class CollectionCollection extends MasterCollection {
 	private $defaultQuery = ['query'=>[]];
 
 	public function getList($collectionName,$option = []){
-		$collection = new collection($this->manager,$collectionName);
+		$collection = new Collection($this->manager,$collectionName);
 		$option = array_replace_recursive($this->defaultQuery,$option);
 		$dOption = Config::get('paginator');
 		$option = array_replace_recursive($dOption,$option);
@@ -50,8 +50,12 @@ class CollectionCollection extends MasterCollection {
 	}
 
 	public function dropCollection($collectionName){
-		$collection = new collection($this->manager,$collectionName);
+		$collection = new Collection($this->manager,$collectionName);
 		return $collection->drop();
 	}
 
+	public function insertMany($collectionName,$document){
+		$collection = new Collection($this->manager,$collectionName);
+		return $collection->insertMany($document);
+	}
 }

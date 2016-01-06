@@ -1,10 +1,10 @@
-<section id="dbList">
+<section>
 	<header>
 		<h1>Database</h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('create database', ['controller'=>'database','action'=>'add'],['class'=>'btn-menu-database info']);?></li>
+			<li><?php echo $this->link('create database', ['controller'=>'database','action'=>'add'],['class'=>'btn-menu-database']);?></li>
 		</ul>
 	</nav>
 	<table>

@@ -12,5 +12,22 @@
  */
 
 $(document).ready(function(){
-
+	$('.hideaway').on('click','.hideaway-btn',function(event){
+		event.stopPropagation();
+		var me = $(event.delegateTarget);
+		var display = me.children('section').css('display');
+		var list = me.parent('.hideaway-list');
+		if(list.attr('class')){
+			list.children('.hideaway').children('section').css('display','none');
+		}
+		if(display=='none'){
+			me.children('section').css('display','block');
+		}else{
+			me.children('section').css('display','none');
+		}
+	});
+	
+	$('.flash-message').on('click',function(event){
+		$(this).remove();
+	});
 });

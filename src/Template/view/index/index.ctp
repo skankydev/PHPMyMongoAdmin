@@ -1,8 +1,8 @@
 <section>
-	<header><h1>Index OF :<?php echo $namespace; ?></h1> </header>
+	<header><h1>Index: <?php echo $namespace; ?></h1> </header>
 	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]],['class'=>'btn-menu info']);?></li>
+			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?></li>
 		</ul>
 	</nav>
 	<table>

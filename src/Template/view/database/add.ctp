@@ -18,7 +18,7 @@ $params = ['pattern'=>'[a-zA-Z.]*','title'=>"a-z A-z ."];
 	</header>
 	<?php echo $this->Form->start($this->request->url(['action'=>'add','params'=>$params])); ?>
 		<?php echo $this->Form->fieldset([
-			'legend'  => ['content'=>'creat a new collection','class'=>'legend'],
+			'legend'  => ['content'=>'creat a new collection'],
 			'input'   => [
 					'database'       => $dbOption,
 					'collection'     => ['label'=>'Collection name','required'=>'required','pattern'=>'[a-zA-Z.]*','title'=>"a-z A-Z ."],

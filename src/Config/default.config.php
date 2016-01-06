@@ -21,7 +21,7 @@ return [
 		'limit' => 10,
 		'page'  => 1,
 		'count' => 1,
-		'range' => 5,
+		'range' => 10,
 		'pages' => 1,
 	],
 	'request'    => ['historyLimit'=>10],
@@ -32,4 +32,5 @@ return [
 	],
 	'PHPMyMongoAdmin'  => ['version'=>'0.0.1'],
 	'Module'=>['PHPMyMongoAdmin'],
+	'debug'=>true,
 ];

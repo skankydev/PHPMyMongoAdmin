@@ -8,16 +8,16 @@ if(isset($doc)){
 }
 ?>
 <section id="Document">
-	<header><h1>Document: <?php echo $this->link($namespace, ['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);?></h1></header>
+	<header><h1>Document: <?php echo $namespace;?></h1></header>
 	<nav>
 		<ul>
-			<li><span class="btn-menu-save info">save</span></li>
+			<li><span class="btn-menu-save">save</span></li>
 			<?php if (!isset($doc)): ?>
-				<li><input type="file" id="loadDocument"/><label class="btn-menu-import info" for="loadDocument">import</label></li>
+				<li><input type="file" id="loadDocument"/><label class="btn-menu-import" for="loadDocument">import</label></li>
 			<?php else: ?>
 				<li><span class="btn-menu-delete error">delete</span></li>
 			<?php endif ?>
-			<li><span class="btn-menu-file info">export</span></li>
+			<li><span class="btn-menu-file">export</span></li>
 			<li></li>
 		</ul>
 	</nav>
@@ -69,11 +69,14 @@ $(document).ready(function(){
 
 	$('.btn-menu-save').on('click',function(event){
 		var json = editor.get();
+		console.log(link);
 		$.post(link,{json:JSON.stringify(json)},function(data){
+			console.log(data);
 			if(data.result){
 				window.location.replace(data.url);
 			}else{
-				alert('error');
+				var text = '<div class="flash-message error">'+data.message+'<div>';
+				$("#Flash-Message").html(text);
 				console.log(data);
 			}
 		},'json');

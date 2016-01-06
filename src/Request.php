@@ -20,6 +20,8 @@ use PHPMyMongoAdmin\Config\Config;
 
 class Request {
 
+	private static $_instance = null;
+
 	public $uri;
 	public $sheme;
 	public $method;
@@ -31,12 +33,17 @@ class Request {
 	public $controller;
 	public $action;
 	public $params = [];
-	public $data = [];
+	public $data;
 	public $history;
 	public $router;
 	public $userAgent;
-	public $swaped;
 
+	public static function getInstance() {
+		if(is_null(self::$_instance)) {
+			self::$_instance = new Request();  
+		}
+		return self::$_instance;
+	}
 	public function __construct(){
 		//debug($_SERVER);die();
 		$this->swaped    = false;
@@ -50,11 +57,17 @@ class Request {
 		$this->userAgent = new UserAgent();
 		$this->history = new Historique();
 
+		//debug($_SERVER);
+
 		if($this->isPost()){
 			$this->data = (object)$_POST;
 		}
 	}
-
+	/**
+	 * get value form $_POST
+	 * @param  string $name value
+	 * @return mixed       $_POST | $_POST[$value]
+	 */
 	public function getPost($name = ''){
 		if($this->isPost()){
 			if(empty($name)){
@@ -65,7 +78,16 @@ class Request {
 		}
 		return false;
 	}
-
+	/**
+	 * get $_FILES
+	 * @return array $_FILES
+	 */
+	public function getFiles(){
+		if(empty($_FILES)){
+			return false;
+		}
+		return $_FILES;
+	}
 	/**
 	 * ca viendra un jour
 	 * @param  string $name [description]
@@ -98,7 +120,7 @@ class Request {
 	 * @param  array  $link a array description of the link
 	 */
 	public function redirect($link = []){
-		$this->history->notDirect();
+		//$this->history->notDirect();
 		//debug($this->history);
 		$url ='';
 		if(is_string($link)){
@@ -141,26 +163,6 @@ class Request {
 			}
 		}
 		return $url;
-	}
-
-	/**
-	 * swap request information to a new request
-	 * a easy way for run a controller 
-	 * load the new one in your controller 
-	 * @param  array  $link the new direction if link is empty he get the last direct request
-	 * @return void
-	 */
-	public function swap($link = []){
-		/*--bullshit--*/
-		if(empty($link)){
-			$link = $this->history->getLastDirect();
-		}
-		$this->namespace = $link['link']['namespace'];
-		$this->controller = $link['link']['controller'];
-		$this->action = $link['link']['action'];
-		$this->params = $link['link']['params'];
-		$this->history->notDirect();
-		$this->swaped = true;
 	}
 
 	/**

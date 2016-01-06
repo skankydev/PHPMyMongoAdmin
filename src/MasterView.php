@@ -37,8 +37,8 @@ class MasterView {
 	private $js = '';
 	
 
-	function __construct($request){
-		$this->request = $request;
+	function __construct(){
+		$this->request = Request::getInstance();
 	}
 
 	/**
@@ -133,18 +133,7 @@ class MasterView {
 	public function getHeader(){
 		return $this->css.$this->js;
 	}
-	/**
-	 * TODO tu a rien foutu mec fo retravailler ca !
-	 */
-	static function load(Request $request,$name = 'PHPMyMongoAdmin\MasterView'){
-		/*$fileName = Config::controllerDIR().DS.$request->controller.'.php';
-		if(!file_exists($fileName)){
-			throw new \Exception("Controller {$request->controller} does not exist", 101);
-		}
-		require $fileName;
-		$name = $request->namespace.'\\Controller\\'.$request->controller;*/
-		return new MasterView($request);
-	}
+
 	
 	//fair comme les behavior ca va viendre vite
 	public function loadHelper(){
@@ -185,9 +174,6 @@ class MasterView {
 	 */
 	public function getScript(){
 		$retour = $this->script;
-		/*if($this->request->swaped){
-			$retour .= $this->surround("history.pushState({ path: this.path }, '', '{$this->request->url()}');",'script');
-		}*/
 		return $retour;
 	}
 

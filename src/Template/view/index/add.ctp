@@ -4,8 +4,8 @@
 	</header>
 	<nav class="pages-menu">
 		<ul>
-			<li><span class="btn-menu-save info">save</span></li>
-			<li><input type="file" id="loadDocument"/><label class="btn-menu-import info" for="loadDocument">import</label></li>
+			<li><span class="btn-menu-save">save</span></li>
+			<li><input type="file" id="loadDocument"/><label class="btn-menu-import" for="loadDocument">import</label></li>
 		</ul>
 	</nav>
 	<section>
@@ -47,21 +47,17 @@ $(document).ready(function(){
 			if(data.result){
 				window.location.replace(data.url);
 			}else{
-				console.log(data);
+				//create aletre
+				var text = '<div class="flash-message error">'+data.message+'<div>';
+				$("#Flash-Message").html(text);
 			}
 		},'json');
 	});
 
 	var reader = new FileReader();
 
-	<?php $indexes = [
-			[ 'key' => [ 'text' => 1 ], 'name'=>'tire', 'unique' => true ],
-			[ 'key' => [ 'list' => 1 ], 'name'=>'list','background'=>true],
-		];
-	?>
-	var json = <?php echo json_encode($indexes); ?>;
+	var json = [{"key":{"field_name_A": 1,"field_name_B": -1},"name": "index_name","unique": true,"background": true,"expireAfterSeconds":3600}];
 	editor.set(json);
-
 
 	reader.onload = function(event){
 		var text = event.target.result;
@@ -72,7 +68,6 @@ $(document).ready(function(){
 		reader.readAsText($(this)[0].files[0]);
 	});
 
-
 	$('.btn-menu-file').on('click',function(event){
 		var blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
 		var url = URL.createObjectURL(blob);
@@ -81,6 +76,3 @@ $(document).ready(function(){
 });
 </script>
 <?php $this->stopScript() ?>
-<div class="list">
-
-</div>

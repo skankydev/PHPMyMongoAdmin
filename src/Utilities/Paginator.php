@@ -43,6 +43,7 @@ class Paginator implements Iterator {
 	function getOption(){
 		return $this->option;
 	}
+	
 	/**
 	 * set parametre for link in paginator
 	 * @param array $params the params
@@ -65,7 +66,7 @@ class Paginator implements Iterator {
 		$this->option['prev'] = ($prev<$this->option['first'])? $this->option['first'] : $prev;
 		$start = $this->option['page'] - floor($this->option['range']/2);
 		$this->option['start'] = ($start<$this->option['first'])?$this->option['first'] : $start;
-		$stop = floor($this->option['range']/2) + $this->option['page'] + (($this->option['range']%2)?1:0);
+		$stop = floor($this->option['range']/2) + $this->option['page'] + ($this->option['range']%2);
 		$this->option['stop'] = ($stop>$this->option['last'])?($this->option['last']+1):$stop;
 	}
 }

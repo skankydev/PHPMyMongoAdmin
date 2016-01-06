@@ -38,9 +38,9 @@ class DocumentController extends MasterController {
 				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
 				$result = $this->Document->insert($namespace,$data);
 				$data->_id = $result->getInsertedId();
-			} catch (Exception $e) {
+			} catch (\Exception $e) {
 				$fView['result'] = false;
-				$fView['message'] = $e->message;
+				$fView['message'] = $e->getCode().':'.$e->getMessage();
 			}
 			$fView['data'] = $data;
 			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
@@ -62,9 +62,9 @@ class DocumentController extends MasterController {
 				$data = $this->request->getPost('json');
 				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
 				$result = $this->Document->update($namespace,$data,$id);				
-			} catch (Exception $e) {
+			} catch (\Exception $e) {
 				$fView['result'] = false;
-				$fView['message'] = $e->message;				
+				$fView['message'] = $e->getCode().':'.$e->getMessage();				
 			}
 			$fView['data'] = $data;
 			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
@@ -78,8 +78,7 @@ class DocumentController extends MasterController {
 	public function delete($namespace,$id){
 		$this->Document->delete($namespace,$id);
 		$this->FlashMessages->set("The Document $id has been dropped",['class' => 'success']);
-		$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['$namespace'=>$namespace]]);
-		
+		$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
 	}
 
 }

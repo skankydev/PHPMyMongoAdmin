@@ -14,9 +14,7 @@
 			<h1>PHP My Mongo Admin</h1>
 			<?php echo $this->element('menu'); ?>
 		</header>
-		<?php echo $this->element('db-list'); ?>
-		<section id="Contents">
-			<section id="Flash-Message"></section>
+		<section id="Error">
 			<?php echo $this->FlashMessages->display(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</section>
@@ -27,10 +25,12 @@
 				$endtime = microtime(true);
 				$time = ($endtime-$starttime)*1000;
 				$time = (int)$time;
-			?><br>
+			?>
+			<br>
 			<span class="debug-time"><?php echo $time; ?> ms</span>
 		</footer>
 	</section>
 	<?php echo $this->getScript(); ?>
+
 </body>
 </html>

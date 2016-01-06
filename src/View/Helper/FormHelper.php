@@ -94,7 +94,7 @@ class FormHelper extends MasterHelper {
 	 */
 	public function start($action,$attr = [],$method='POST'){
 		$retour = '<form action="'.$action.'" ';
-		$attr =  array_merge($this->formAttr,$attr);
+		$attr =  array_replace($this->formAttr,$attr);
 		$retour .= $this->createAttr($attr);
 		$retour .= 'method="'.$method.'">';
 		return $retour;

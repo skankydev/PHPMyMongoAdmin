@@ -1,18 +1,21 @@
 <section>
 	<header>
-		<h1><?php echo $cName; ?></h1>
+		<h1><?php echo $namespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
 			<li>
-				<?php echo $this->link('add', ['controller'=>'document','action'=>'index','params'=>['namespace'=>$cName]],['class'=>'btn-menu info']);?>
+				<?php echo $this->link('add', ['controller'=>'document','action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
-				<?php echo $this->link('index', ['controller'=>'index','action'=>'index','params'=>['namespace'=>$cName]],['class'=>'btn-menu info']);?>
+				<?php echo $this->link('index', ['controller'=>'index','action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+			</li>
+			<li>
+				<?php echo $this->link('import', ['action'=>'import','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
 				<?php echo $this->link('drop',
-					['controller'=>'collection', 'action'=>'drop','params'=>['name'=>$cName]],
+					['controller'=>'collection', 'action'=>'drop','params'=>['name'=>$namespace]],
 					['onclick'=>"return confirm('Are you sure?')",'class'=>'btn-menu error'] ); ?>
 			</li>
 		</ul>
@@ -21,16 +24,16 @@
 		<?php foreach ($data as $value): ?>
 		<div class="document">
 			<?php if (isset($value->_id)): ?>
-			<nav>
+			<nav class="action-menu">
 				<ul>
 					<li>
-						<?php echo $this->link('e',
-							['controller'=>'document','action'=>'index','params'=>['namespace'=>$cName,'id'=>$value->_id]],
+						<?php echo $this->link('E',
+							['controller'=>'document','action'=>'index','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
 							['class'=>'btn-action-edit']);?>
 					</li>
 					<li>
-						<?php echo $this->link('d',
-							['controller'=>'document','action'=>'delete','params'=>['namespace'=>$cName,'id'=>$value->_id]],
+						<?php echo $this->link('D',
+							['controller'=>'document','action'=>'delete','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
 							['class'=>'btn-action-drop','onclick'=>"return confirm('Are you sure?')"]);?>
 					</li>
 				</ul>
@@ -64,8 +67,7 @@ $(document).ready(function(){
 			alert(err.toString());
 		}
 	}
-	console.log(container);
-	console.log(container.length);
+
 	var num = container.length;
 	var editor = [];
 	for (var i = 0; i < num; i++) {

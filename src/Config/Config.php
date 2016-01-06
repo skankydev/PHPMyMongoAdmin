@@ -43,7 +43,9 @@ class Config {
 	static function elementDir(){
 		return APP_FOLDER.DS."src".DS.'Template'.DS.'element';
 	}
-
+	static function controllerDir(){
+		return APP_FOLDER.DS."src".DS.'Controller';
+	}
 	static function getDbConf($dbSelec = 'default'){
 		return self::arrayGet('db.'.$dbSelec,self::$conf);
 	}
@@ -68,7 +70,9 @@ class Config {
 		return self::arrayGet('PHPMyMongoAdmin.version',self::$conf);
 	}
 	
-
+	static function getDebug(){
+		return self::arrayGet('debug',self::$conf);
+	}
 	static function get($path){
 		return self::arrayGet($path,self::$conf);
 	}

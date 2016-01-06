@@ -1,39 +1,39 @@
 <?php $aClass = 'btn-paging'; ?>
-<nav>
+<nav id="Paginatore">
 	<ul class="paging">
 		<?php $class = $aClass; if($first==$prev) $class .= ' paging-disabled'; ?>	
-		<li class="<?php echo $class ?>">
+		<li>
 			<?php 
 				$params['page'] = $first;
-				echo $this->link('<<',['params'=>$params]); 
+				echo $this->link('<<',['params'=>$params],['class'=>$class]); 
 			?>
 		</li>
 		<?php $class = $aClass; if($page==$prev) $class .= ' paging-disabled'; ?>
-		<li class="<?php echo $class ?>">
+		<li>
 			<?php
 			$params['page'] = $prev;
-			echo $this->link('<',['params'=>$params]); ?>
+			echo $this->link('<',['params'=>$params],['class'=>$class]); ?>
 		</li>
 		<?php for ($i=$start; $i < $stop; ++$i): ?> 
 			<?php $class = $aClass; if($i==$page) $class .= ' paging-current'; ?>	
-			<li class="<?php echo $class; ?>">
+			<li>
 				<?php 
 				$params['page'] = $i;
-				echo $this->link($i,['params'=>$params]); ?>
+				echo $this->link($i,['params'=>$params],['class'=>$class]); ?>
 			</li>
 		<?php endfor ?>
 		<?php $class = $aClass; if($page==$next) $class .= ' paging-disabled'; ?>	
-		<li class="<?php echo $class; ?>">
+		<li>
 			<?php 
 			$params['page'] = $next;
-			echo $this->link('>',['params'=>$params]);
+			echo $this->link('>',['params'=>$params],['class'=>$class]);
 			?>
 		</li>
 		<?php $class = $aClass; if($last==$next) $class .= ' paging-disabled'; ?>	
-		<li class="<?php echo $class; ?>">
+		<li>
 			<?php
 			$params['page'] = $last;
-			echo $this->link('>>',['params'=>$params]); ?>
+			echo $this->link('>>',['params'=>$params],['class'=>$class]); ?>
 		</li>
 	</ul>
 </nav>

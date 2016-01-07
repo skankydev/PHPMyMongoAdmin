@@ -286,7 +286,7 @@ nav input[type="file"] + label{
 	border-style: solid;
 	background-color : rgba(105,178,65,0.1);
 	border-color : rgba(105,178,65,1);
-	transition:all 0.1s;
+	transition:all 0.2s;
 
 	cursor: pointer;
 }
@@ -382,7 +382,7 @@ nav input[type="file"] + label{
 	content: '';
 	position: absolute;
 
-	height: 4px;
+	height: 3px;
 	width: 100%;
 	background-color: #BEBEBE;
 	transition: transform 0.2s ease-out ;

@@ -19,7 +19,10 @@ class Router
 {
 	private $routes = [];
 
-
+	/**
+	 * translates information of the request for application
+	 * @param Request &$request the request
+	 */
 	function __construct(Request &$request) {
 
 		$this->routes = Config::getRoutes();
@@ -43,9 +46,13 @@ class Router
 				$request->params = array_slice($tmp,2);
 			}
 		}
-		Config::setCurentNamespace($request->namespace);
 	}
 
+	/**
+	 * return route by name
+	 * @param  string $name the name
+	 * @return array        the $link
+	 */
 	function getRouteByName($name){
 		$retour = false;
 		if(array_key_exists($name, $this->routes)){

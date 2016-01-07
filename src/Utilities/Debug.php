@@ -48,7 +48,7 @@ function debug($data,$message = ''){
 		$result = substr($result[0],-strlen($result[0])+4);//we je sais ca bug
 		return ' => <span class="debug-text">'.$result.'</span>';
 	}, $output);
-	// tout ca ^
+	// tout ca ^ (mais c'est joli ;) )
 	echo "<pre><code>".$output."</code></pre>";
 	echo '</div>';
 	

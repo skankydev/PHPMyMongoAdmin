@@ -14,6 +14,7 @@
 namespace PHPMyMongoAdmin\Controller;
 
 use PHPMyMongoAdmin\MasterController;
+use PHPMyMongoAdmin\Utilities\Session;
 
 
 class CollectionController extends MasterController {
@@ -37,7 +38,7 @@ class CollectionController extends MasterController {
 				$content = json_decode($content,true);
 				$result = $this->Collection->insertMany($namespace,$content);
 				$this->FlashMessages->set("Your file has been imported",['class' => 'success']);
-				$this->request->redirect(['controller'=>'collection','action'=>'view','params'=>['namespace'=>$namespace]]);
+				$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
 			}else{
 				$this->FlashMessages->set("your file must be in .json format",['class' => 'error']);
 			}
@@ -56,5 +57,36 @@ class CollectionController extends MasterController {
 			$tmp = explode('.',$namespace);
 			$this->request->redirect(['controller'=>'database','action'=>'view','params'=>['dbName'=>$tmp[0]]]);
 		}
+	}
+
+	public function aggregate($namespace){
+		if ($this->request->isPost()) {
+			$data = $this->request->getPost('json');
+			$data = json_decode($data,true);
+			//$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
+			Session::set('pipeline',$data);
+			$retour['result'] = true;
+			$retour['url'] = $this->request->url(['action'=>'run','params'=>['namespace'=>$namespace]]);
+			echo json_encode($retour);die();
+		}
+		$pipeline = Session::get('pipeline');
+		if($pipeline){
+			$fV['pipeline']  = $pipeline;
+		}
+		$this->view->set(['namespace'=>$namespace,]);
+		$fV['namespace'] = $namespace;
+		$this->view->set($fV);
+	}
+
+	public function run($namespace){
+		$pipeline = Session::get('pipeline');
+		if(!$pipeline){
+			$this->request->redirect(['action'=>'aggregate','params'=>['namespace'=>$namespace]]);
+		}
+		$result = $this->Collection->aggregate($namespace,$pipeline);
+		$fV['namespace'] = $namespace;
+		$fV['pipeline']  = $pipeline;
+		$fV['cursor']    = $result;
+		$this->view->set($fV);
 	}
 }

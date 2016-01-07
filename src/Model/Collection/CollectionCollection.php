@@ -58,4 +58,10 @@ class CollectionCollection extends MasterCollection {
 		$collection = new Collection($this->manager,$collectionName);
 		return $collection->insertMany($document);
 	}
+
+	public function aggregate($collectionName,$pipeline){
+		$collection = new Collection($this->manager,$collectionName);
+		$result = $collection->aggregate($pipeline);
+		return $result;
+	}
 }

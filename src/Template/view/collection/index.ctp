@@ -11,6 +11,9 @@
 				<?php echo $this->link('index', ['controller'=>'index','action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
+				<?php echo $this->link('aggregate', ['action'=>'aggregate','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+			</li>
+			<li>
 				<?php echo $this->link('import', ['action'=>'import','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>

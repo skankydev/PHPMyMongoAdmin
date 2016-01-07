@@ -30,6 +30,7 @@ class MasterCollection
 {
 	protected $collectionName;
 	protected $behavior = [];
+	
 
 	/**
 	 * construct
@@ -37,55 +38,10 @@ class MasterCollection
 	 */
 	function __construct($name){
 		$this->collectionName = strtolower($name);
-		$this->loadBehavior();
 		$dbConnect = Config::getDbConf('MongoDB');
 		$uri = 'mongodb://'.$dbConnect['host'].':'.$dbConnect['port'];
 		$this->manager = new Manager($uri);
 		$this->client = new Client($uri);
-	}
-
-	/**
-	 * load behavior
-	 * @return void
-	 */
-	protected function loadBehavior(){
-		if(!empty($this->behavior)){
-			foreach ($this->behavior as $key => $value) {
-				$this->$key = new $value['class']($this);
-			}
-		}
-	}
-	
-	/**
-	 * call behavior event
-	 * @param  string $method  event name
-	 * @param  array &$data    the data from databas or from entity
-	 * @param  entity &$entity the entity if it's need update on create  
-	 * @return void
-	 */
-	protected function callBehavior($method,&$data,&$entity=null){
-		if(!empty($this->behavior)){
-			foreach ($this->behavior as $key => $value) {
-				$this->$key->$method($data,$entity);
-			}
-		}
-	}
-
-	/**
-	 * create new entity
-	 * @param  array $data the data
-	 * @return entity
-	 */
-	public function createEntity($data){
-		$tmp = explode('\\', get_class($this));
-		$entity = str_replace('sCollection','',$tmp[3]);
-
-		$eName = $tmp[0].'\\Model\\Entity\\'.$entity;
-		unset($tmp);
-		$this->callBehavior('beforeCreateEntity',$data);
-		$entity = new $eName($data);
-		$this->callBehavior('afterCreateEntity',$data,$entity);
-		return $entity;
 	}
 
 	/**

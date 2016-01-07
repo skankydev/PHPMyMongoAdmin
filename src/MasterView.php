@@ -58,6 +58,7 @@ class MasterView {
 			echo $this->content;
 		}
 	}
+	
 	/**
 	 * render a element of view 
 	 * @param string $element element name
@@ -71,6 +72,7 @@ class MasterView {
 		require($fileName);
 		return ob_get_clean();
 	}
+
 	/**
 	 * create the path/to/folder for diferante view
 	 * @return void 
@@ -135,20 +137,14 @@ class MasterView {
 	}
 
 	
-	//fair comme les behavior ca va viendre vite
+	//va faloir faire mieux 
 	public function loadHelper(){
 		
-		if(!isset($this->Form)){
-			$this->Form = new FormHelper($this->request->data);
-		}
-
-		if(!isset($this->FlashMessages)){
-			$this->FlashMessages = new FlashMessagesHelper($this->request->data);
-		}
-
-		if(!isset($this->Size)){
-			$this->Size = new SizeHelper($this->request->data);
-
+		foreach ($this->helpers as $helper) {
+			if(!isset($this->{$helper})){
+				$name = 'PHPMyMongoAdmin\\View\\Helper\\'.$helper.'Helper';
+				$this->{$helper} = new $name($this->request->data);
+			}
 		}
 	}
 	

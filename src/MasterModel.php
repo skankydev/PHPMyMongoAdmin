@@ -26,7 +26,7 @@ use MongoDB\Database;
 /**
 * 
 */
-class MasterCollection
+class MasterModel
 {
 	protected $collectionName;
 	protected $behavior = [];
@@ -51,9 +51,9 @@ class MasterCollection
 	 */
 	static function load($name){
 		$tmp = explode('\\', $name);
-		$collection = str_replace('Collection','',end($tmp));
+		$collection = end($tmp);
 		
-		$cName = $tmp[0].'\\Collection\\'.$collection.'Collection';
+		$cName = $tmp[0].'\\Model\\'.$collection;
 		unset($tmp);
 		
 		return new $name($collection);

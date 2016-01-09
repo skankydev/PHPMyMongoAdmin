@@ -15,7 +15,7 @@ namespace PHPMyMongoAdmin;
 
 use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\MasterView;
-use PHPMyMongoAdmin\MasterCollection;
+use PHPMyMongoAdmin\MasterModel;
 use PHPMyMongoAdmin\Controller\Tools\FlashMessagesTool;
 use PHPMyMongoAdmin\Request;
 /**
@@ -36,12 +36,12 @@ class MasterController {
 		$this->request = Request::getInstance();
 		
 		$name = explode('\\',get_class($this));
-		$collectionName = end($name);
-		$collectionName = str_replace('Controller','',$collectionName);
+		$modelName = end($name);
+		$modelName = str_replace('Controller','',$modelName);
 
-		$cName = $name[0].'\\Collection\\'.$collectionName.'Collection';
+		$cName = $name[0].'\\Model\\'.$modelName;
 
-		$this->{$collectionName} = MasterCollection::load($cName);
+		$this->{$modelName} = MasterModel::load($cName);
 		$this->view = new MasterView();
 		$this->loadTools();
 		$this->execute();
@@ -75,13 +75,13 @@ class MasterController {
 	 */
 	static function load(){
 		$request = Request::getInstance();
-		$fileName = Config::controllerDIR().DS.$request->controller.'.php';
+		$fileName = Config::controllerDIR().DS.$request->controller.'Controller.php';
 		if(!file_exists($fileName)){
 			throw new \Exception("Controller {$request->controller} does not exist", 101);
 		}
 		require $fileName;
 
-		$name = $request->namespace.'\\Controller\\'.$request->controller;
+		$name = $request->namespace.'\\Controller\\'.$request->controller.'Controller';
 		return new $name();
 	}
 

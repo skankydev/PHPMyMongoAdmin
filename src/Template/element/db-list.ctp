@@ -1,7 +1,7 @@
-<?php 	use PHPMyMongoAdmin\Collection\DatabaseCollection; //c'est moche !! ?>
+<?php 	use PHPMyMongoAdmin\Model\Database; //c'est la fete du slip ! ?>
 <aside id="SideBar">
 	<?php 
-		$manager = new DatabaseCollection('DataBase');
+		$manager = new Database('DataBase');
 		$dbList = $manager->getDBList();
 		echo $this->link('creat database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
 	?>

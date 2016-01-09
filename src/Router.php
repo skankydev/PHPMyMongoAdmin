@@ -30,7 +30,7 @@ class Router
 		$uri = $request->uri;
 		if(array_key_exists($uri, $this->routes)){
 			$request->namespace  = $this->routes[$uri]['options']['namespace'];
-			$request->controller = ucfirst($this->routes[$uri]['options']['controller']).'Controller';
+			$request->controller = ucfirst($this->routes[$uri]['options']['controller']);
 			$request->action     = $this->routes[$uri]['options']['action'];
 			if(isset($this->routes[$uri]['params'])){
 				$request->params     = $this->routes[$uri]['params'];
@@ -39,7 +39,7 @@ class Router
 			$uri = substr($request->uri, 1);
 			$tmp = explode('/', $uri);
 			$request->namespace  = Config::getDefaultNamespace();
-			$request->controller = ucfirst($tmp[0]).'Controller';
+			$request->controller = ucfirst($tmp[0]);
 			$request->action     = isset($tmp[1]) ? $tmp[1] : Config::getDefaultAction();
 
 			if(isset($tmp[2])&&!empty($tmp[2])){

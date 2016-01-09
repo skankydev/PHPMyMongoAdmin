@@ -15,7 +15,6 @@ namespace PHPMyMongoAdmin;
 
 use PHPMyMongoAdmin\Utilities\UserAgent;
 use PHPMyMongoAdmin\Utilities\Session;
-use PHPMyMongoAdmin\Utilities\Historique;
 use PHPMyMongoAdmin\Config\Config;
 
 class Request {
@@ -44,6 +43,7 @@ class Request {
 		}
 		return self::$_instance;
 	}
+
 	public function __construct(){
 		$this->swaped    = false;
 		$this->host      = $_SERVER['HTTP_HOST'];
@@ -54,12 +54,12 @@ class Request {
 		$this->ip        = $_SERVER['REMOTE_ADDR'];
 		$this->referer   = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null;
 		$this->userAgent = new UserAgent();
-		$this->history = new Historique();
 
 		if($this->isPost()){
 			$this->data = (object)$_POST;
 		}
 	}
+
 	/**
 	 * get value form $_POST
 	 * @param  string $name value
@@ -75,6 +75,7 @@ class Request {
 		}
 		return false;
 	}
+
 	/**
 	 * get $_FILES
 	 * @return array $_FILES
@@ -85,6 +86,7 @@ class Request {
 		}
 		return $_FILES;
 	}
+
 	/**
 	 * ca viendra un jour
 	 * @param  string $name [description]
@@ -97,28 +99,13 @@ class Request {
 			return $this->params[$name];
 		}
 	}
-	/**
-	 * insert the new url in session
-	 * @return void
-	 */
-	public function updateHistory(){
-		$this->history->updateHistorique($this);
-	}
-	/**
-	 * get the request history
-	 * @return array histories
-	 */
-	public function getHistories(){
-		return ['histories'=>$this->history->getHistorique()];
-	}
+
 
 	/**
 	 * redirect the request to a new link
 	 * @param  array  $link a array description of the link
 	 */
 	public function redirect($link = []){
-		//$this->history->notDirect();
-		//debug($this->history);
 		$url ='';
 		if(is_string($link)){
 			$url = $this->url($this->router->getRouteByName($link));			

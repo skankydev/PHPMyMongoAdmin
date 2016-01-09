@@ -50,14 +50,6 @@ class DatabaseController extends MasterController {
 		$this->view->set(['data'=>$data,'dbName'=>$dbName]);
 	}
 
-	public function edit(){
-
-	}
-
-	public function delete(){
-
-	}
-
 	public function drop($dbName = ''){
 		if(!empty($dbName)){
 			$result = $this->Database->dropDatabase($dbName);

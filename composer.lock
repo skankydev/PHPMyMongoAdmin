@@ -9,26 +9,26 @@
     "packages": [
         {
             "name": "mongodb/mongodb",
-            "version": "1.0.0-beta1",
+            "version": "1.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "34b74f852af43fc70f49308bfbd3555f91db593c"
+                "reference": "e8177e87efe74437b812915887d416f5b68b4e30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/34b74f852af43fc70f49308bfbd3555f91db593c",
-                "reference": "34b74f852af43fc70f49308bfbd3555f91db593c",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/e8177e87efe74437b812915887d416f5b68b4e30",
+                "reference": "e8177e87efe74437b812915887d416f5b68b4e30",
                 "shasum": ""
             },
             "require": {
-                "ext-mongodb": "^1.0.0",
+                "ext-mongodb": "^1.1.1",
                 "php": ">=5.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -65,7 +65,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2015-11-02 21:31:19"
+            "time": "2015-12-28 19:40:56"
         }
     ],
     "packages-dev": [],

@@ -11,9 +11,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */
-namespace PHPMyMongoAdmin\Collection;
+namespace PHPMyMongoAdmin\Model;
 
-use PHPMyMongoAdmin\MasterCollection;
+use PHPMyMongoAdmin\MasterModel;
 use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\Utilities\Paginator;
 
@@ -24,7 +24,7 @@ use MongoDB\Driver\BulkWrite;
 
 use stdClass;
 
-class DocumentCollection extends MasterCollection {
+class Document extends MasterModel {
 
 	var $manager;
 	private $defaultQuery = ['query'=>[]];

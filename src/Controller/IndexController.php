@@ -39,7 +39,7 @@ class IndexController extends MasterController {
 			}
 			$fView['url'] = $this->request->url(['controller'=>'index','action'=>'index','params'=>['namespace'=>$namespace]]);
 			if($fView['result']){
-				$this->FlashMessages->set("The Index has been create",['class' => 'success']);
+				$this->FlashMessages->set("The index has been create",['class' => 'success']);
 			}
 			echo json_encode($fView);die();
 		}
@@ -49,19 +49,7 @@ class IndexController extends MasterController {
 	public function edit($namespace){
 		
 	}
-/*
 
-
-try {
-	$data = $this->request->getPost('json');
-	$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
-	$result = $this->Document->insert($namespace,$data);
-	$data->_id = $result->getInsertedId();
-} catch (Exception $e) {
-	$fView['result'] = false;
-	$fView['message'] = $e->message;
-}
-*/
 	public function drop($namespace,$index){
 		$this->Index->dropIndex($namespace,$index);
 		$this->FlashMessages->set("The index $id has been dropped",['class' => 'success']);

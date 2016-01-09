@@ -18,8 +18,8 @@ include_once APP_FOLDER.DS."src".DS."Utilities".DS."Debug.php";
 
 use PHPMyMongoAdmin\Request;
 use PHPMyMongoAdmin\Router;
-use PHPMyMongoAdmin\MasterController;
 use PHPMyMongoAdmin\MasterView;
+use PHPMyMongoAdmin\MasterController;
 use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\Utilities\Session;
 use PHPMyMongoAdmin\Controller\ErrorController;
@@ -37,7 +37,6 @@ class PHPMyMongoAdmin {
 			$this->request = Request::getInstance();
 			$this->router = new Router($this->request);
 			$this->request->setRouter($this->router);
-			$this->request->updateHistory();
 			$this->controller = MasterController::load();
 		} catch (\Exception $e) {
 			$this->controller = new ErrorController($e);

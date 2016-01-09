@@ -21,14 +21,14 @@
 			<?php echo $this->fetch('content'); ?>
 		</section>
 		<footer id="Footer">
-			<span>application realiser par <a class="mailto" href="mailto:simon.schenck@gmail.com">skank</a>.</span>
 			<?php 
 				$starttime = $_SERVER['REQUEST_TIME_FLOAT'];
 				$endtime = microtime(true);
 				$time = ($endtime-$starttime)*1000;
 				$time = (int)$time;
-			?><br>
-			<span class="debug-time"><?php echo $time; ?> ms</span>
+			?>
+			<span class="debug-time"><?php echo $time; ?> ms</span><br>
+			<span>powered by <a href="https://github.com/skank" target="_blank">skank</a>.</span>
 		</footer>
 	</section>
 	<?php echo $this->getScript(); ?>

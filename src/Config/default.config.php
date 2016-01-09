@@ -24,12 +24,6 @@ return [
 		'range' => 10,
 		'pages' => 1,
 	],
-	'request'    => ['historyLimit'=>10],
-	'autoloader' => [
-		'Entity'     => 'Model',
-		'Collection' => 'Model',
-		'Behavior'   => 'Model',
-	],
 	'PHPMyMongoAdmin'  => ['version'=>'0.0.1'],
 	'Module'=>['PHPMyMongoAdmin'],
 	'debug'=>true,

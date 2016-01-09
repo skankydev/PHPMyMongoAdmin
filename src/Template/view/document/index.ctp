@@ -22,7 +22,7 @@ if(isset($doc)){
 		</ul>
 	</nav>
 	<section>
-		<div id="editor"></div>
+		<div id="Editor"></div>
 	</section>
 	<footer>
 		<div>
@@ -51,54 +51,23 @@ if(isset($doc)){
 
 <script type="text/javascript">
 $(document).ready(function(){
-	var container = document.getElementById('editor');
+	
 	var option = {
-		mode: 'code',
-		modes:['code', 'text', 'tree', 'view'],
-		history:1,
-		indentation:4,
-		error: function (err) {
-			alert(err.toString());
-		}
-	}
-	var editor = new JSONEditor(container, option);
-	var reader = new FileReader();
-
-	<?php if(isset($doc)): ?>
-		var json = <?php echo MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>;
-		editor.set(json);
-	<?php endif ?>
-	var link = <?php echo '\''.$this->request->url($link).'\''; ?>;
-
-	reader.onload = function(event){
-		var text = event.target.result;
-		editor.set(JSON.parse(text));
+		editOption : {
+			mode: 'code',
+			history:1,
+			indentation:4,
+			error: function (err) {alert(err.toString());}
+		},
+		container:'Editor',
+		link:<?php echo '\''.$this->request->url($link).'\''; ?>,
+		<?php if(isset($doc)): ?>
+			json:<?php echo MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>,
+		<?php else: ?>
+			json:{},
+		<?php endif ?>
 	};
-
-	$('#loadDocument').on('change',function(event){
-		reader.readAsText($(this)[0].files[0]);
-	});
-
-	$('.btn-menu-save').on('click',function(event){
-		var json = editor.get();
-		console.log(link);
-		$.post(link,{json:JSON.stringify(json)},function(data){
-			console.log(data);
-			if(data.result){
-				window.location.replace(data.url);
-			}else{
-				var text = '<div class="flash-message error">'+data.message+'<div>';
-				$("#Flash-Message").html(text);
-				console.log(data);
-			}
-		},'json');
-	});
-
-	$('.btn-menu-file').on('click',function(event){
-		var blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
-		var url = URL.createObjectURL(blob);
-		window.open(url);
-	});
+	$('#Editor').initJsonEdit(option);
 });
 </script>
 <?php $this->stopScript() ?>

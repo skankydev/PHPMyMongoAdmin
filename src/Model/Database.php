@@ -11,16 +11,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */
-namespace PHPMyMongoAdmin\Collection;
+namespace PHPMyMongoAdmin\Model;
 
-use PHPMyMongoAdmin\MasterCollection;
+use PHPMyMongoAdmin\MasterModel;
 use MongoDB\Driver\Manager;
 use MongoDB\Client;
 use MongoDB\Database;
 
 use stdClass;
 
-class DatabaseCollection extends MasterCollection {
+class Database extends MasterModel {
 
 	var $client;
 	var $manager;

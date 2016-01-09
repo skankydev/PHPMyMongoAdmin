@@ -71,7 +71,7 @@ class MasterController {
 	/**
 	 * load a Controller 
 	 * @param  Request $request the client request
-	 * @return mixed        a Controller
+	 * @return mixed a Controller
 	 */
 	static function load(){
 		$request = Request::getInstance();

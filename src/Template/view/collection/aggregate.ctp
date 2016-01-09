@@ -5,10 +5,12 @@
 	<nav class="pages-menu">
 		<ul>
 			<li><span class="btn-menu-save">execute</span></li>
+			<li><input type="file" id="loadDocument"/><label class="btn-menu-import" for="loadDocument">import</label></li>
+			<li><span class="btn-menu-file">export</span></li>
 		</ul>
 	</nav>
 	<section>
-		<div id="editor"></div>
+		<div id="Editor"></div>
 	</section>
 	<footer>
 		<h4>User Manual</h4>
@@ -25,53 +27,22 @@
 <?php $this->startScript() ?>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	var container = document.getElementById('editor');
 	var option = {
-		mode: 'code',
-		history:1,
-		indentation:4,
-		error: function (err) {
-			alert(err.toString());
-		}
-	}
-	var editor = new JSONEditor(container, option);
-	var link = <?php echo '\''.$this->request->url(['action'=>'aggregate','params'=>['namespace'=>$namespace]]).'\''; ?>;
-	var reader = new FileReader();
-	<?php if(isset($pipeline)): ?>
-		var json = <?php echo json_encode($pipeline); ?>;
-	<?php else: ?>
-		var json = [{"$match":{"first_name": "Sandra"}}];
-	<?php endif ?>
-	editor.set(json);
-
-	//c'est la meme chose que l autre. a grouper!
-	$('.btn-menu-save').on('click',function(event){
-		var json = editor.get();
-		$.post(link,{json:JSON.stringify(json)},function(data){
-			if(data.result){
-				window.location.replace(data.url);
-			}else{
-				//create aletre
-				var text = '<div class="flash-message error">'+data.message+'<div>';
-				$("#Flash-Message").html(text);
-			}
-		},'json');
-	});
-	reader.onload = function(event){
-		var text = event.target.result;
-		editor.set(JSON.parse(text));
+		editOption : {
+			mode: 'code',
+			history:1,
+			indentation:4,
+			error: function (err) {alert(err.toString());}
+		},
+		container:'Editor',
+		link:<?php echo '\''.$this->request->url(['action'=>'aggregate','params'=>['namespace'=>$namespace]]).'\''; ?>,
+		<?php if(isset($pipeline)): ?>
+			json:<?php echo json_encode($pipeline); ?>
+		<?php else: ?>
+			json:[{"$match":{"first_name": "Sandra"}}]
+		<?php endif ?>
 	};
-
-	$('#loadDocument').on('change',function(event){
-		reader.readAsText($(this)[0].files[0]);
-	});
-
-	$('.btn-menu-file').on('click',function(event){
-		var blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
-		var url = URL.createObjectURL(blob);
-		window.open(url);
-	});
+	$('#Editor').initJsonEdit(option);
 });
 </script>
 <?php $this->stopScript() ?>

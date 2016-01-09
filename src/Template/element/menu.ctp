@@ -5,12 +5,9 @@ $controller = str_replace('Controller','',$controller);
 $controller = strtolower($controller);
 $action = $this->request->action;
 ?>
-
 <nav id="Menu">
 	<ul>
-		<li><a href="/">Database</a></li>
-
-		<?php 
+		<li><a href="/">Database</a></li><?php 
 		if (isset($params[0])){
 			$name = $params[0];
 			$name = explode('.',$name);

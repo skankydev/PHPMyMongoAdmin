@@ -33,7 +33,7 @@ class Router
 			$request->controller = ucfirst($this->routes[$uri]['options']['controller']);
 			$request->action     = $this->routes[$uri]['options']['action'];
 			if(isset($this->routes[$uri]['params'])){
-				$request->params     = $this->routes[$uri]['params'];
+				$request->params = $this->routes[$uri]['params'];
 			}
 		}else{
 			$uri = substr($request->uri, 1);

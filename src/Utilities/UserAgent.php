@@ -27,6 +27,7 @@ class UserAgent {
 	public $osBit   = 'unknow';
 	public $browser = 'unknow';
 	public $mobile  = false;
+	public $agent;
 
 
 	function __construct(){

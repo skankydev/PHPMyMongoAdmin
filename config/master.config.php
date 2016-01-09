@@ -4,7 +4,7 @@ return [
 		'MongoDB' =>[
 			'host'=>'localhost',
 			'port'=>'27017',
-			'user'=>'admin',
+			'user'=>'',
 			'pass'=>''
 		]
 	],
@@ -16,5 +16,5 @@ return [
 				'namespace'  => 'PHPMyMongoAdmin'
 			]
 		],
-	],	
+	],
 ];

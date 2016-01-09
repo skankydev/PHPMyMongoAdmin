@@ -14,30 +14,11 @@
 	<section id="many-editor">
 		<?php foreach ($cursor as $value): ?>
 		<div class="document">
-			<?php if (isset($value->_id)): ?>
-				<nav class="action-menu">
-					<ul>
-						<li>
-							<?php echo $this->link('E',
-								['controller'=>'document','action'=>'index','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
-								['class'=>'btn-action-edit']);?>
-						</li>
-						<li>
-							<?php echo $this->link('D',
-								['controller'=>'document','action'=>'delete','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
-								['class'=>'btn-action-drop','onclick'=>"return confirm('Are you sure?')"]);?>
-						</li>
-					</ul>
-				</nav>
-				<?php endif ?>
-				<div class="editor">
-				<?php 
-					//we bon c'est un peux moche tout ca 
-					echo  MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value));
-				?>
-				</div>
+			<div class="editor">
+			<?php echo  MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value)); ?>
+			</div>
 		</div>
-		<?php endforeach ?>		
+		<?php endforeach ?>
 	</section>
 
 	<footer>

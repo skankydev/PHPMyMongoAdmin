@@ -20,11 +20,6 @@ use PHPMyMongoAdmin\Utilities\Session;
 */
 class FlashMessagesTool extends MasterTool {
 
-	private $default = [
-		'tags' => ['div','span'],
-		'attr' => ['class'=>'sucsse']
-	];
-
 	private $messages;
 
 	public function __construct(){

@@ -1,4 +1,4 @@
-<?php 	use PHPMyMongoAdmin\Model\Collection\DatabaseCollection; //c'est moche !! ?>
+<?php 	use PHPMyMongoAdmin\Collection\DatabaseCollection; //c'est moche !! ?>
 <aside id="SideBar">
 	<?php 
 		$manager = new DatabaseCollection('DataBase');

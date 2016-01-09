@@ -45,7 +45,6 @@ class Request {
 		return self::$_instance;
 	}
 	public function __construct(){
-		//debug($_SERVER);die();
 		$this->swaped    = false;
 		$this->host      = $_SERVER['HTTP_HOST'];
 		$this->uri       = $_SERVER['REQUEST_URI'];
@@ -56,8 +55,6 @@ class Request {
 		$this->referer   = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null;
 		$this->userAgent = new UserAgent();
 		$this->history = new Historique();
-
-		//debug($_SERVER);
 
 		if($this->isPost()){
 			$this->data = (object)$_POST;

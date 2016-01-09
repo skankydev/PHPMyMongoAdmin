@@ -6,8 +6,8 @@
 		<?php echo $this->Form->fieldset([
 			'legend'  => ['content'=>'import json file'],
 			'input'   => [
-					'namespace'      => ['type'=>'hidden','value'=>$namespace],
-					'import'         => ['label'=>'json document','type'=>'file'],
+					'namespace' => ['type'=>'hidden','value'=>$namespace],
+					'import'    => ['label'=>'json document','type'=>'file'],
 				]
 		]); ?>
 		<?php echo $this->Form->submit('Send'); ?>

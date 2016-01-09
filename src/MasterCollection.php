@@ -51,9 +51,9 @@ class MasterCollection
 	 */
 	static function load($name){
 		$tmp = explode('\\', $name);
-		$collection = str_replace('Collection','',$tmp[3]);
+		$collection = str_replace('Collection','',end($tmp));
 		
-		$cName = $tmp[0].'\\Model\\Collection\\'.$collection.'Collection';
+		$cName = $tmp[0].'\\Collection\\'.$collection.'Collection';
 		unset($tmp);
 		
 		return new $name($collection);

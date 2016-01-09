@@ -63,7 +63,7 @@ class CollectionController extends MasterController {
 		if ($this->request->isPost()) {
 			$data = $this->request->getPost('json');
 			$data = json_decode($data,true);
-			//$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
+			//$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));//error with external $oid
 			Session::set('pipeline',$data);
 			$retour['result'] = true;
 			$retour['url'] = $this->request->url(['action'=>'run','params'=>['namespace'=>$namespace]]);
@@ -73,7 +73,6 @@ class CollectionController extends MasterController {
 		if($pipeline){
 			$fV['pipeline']  = $pipeline;
 		}
-		$this->view->set(['namespace'=>$namespace,]);
 		$fV['namespace'] = $namespace;
 		$this->view->set($fV);
 	}

@@ -39,7 +39,7 @@ class MasterController {
 		$collectionName = end($name);
 		$collectionName = str_replace('Controller','',$collectionName);
 
-		$cName = $name[0].'\\Model\\Collection\\'.$collectionName.'Collection';
+		$cName = $name[0].'\\Collection\\'.$collectionName.'Collection';
 
 		$this->{$collectionName} = MasterCollection::load($cName);
 		$this->view = new MasterView();

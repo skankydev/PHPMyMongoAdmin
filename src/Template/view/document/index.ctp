@@ -25,12 +25,24 @@ if(isset($doc)){
 		<div id="editor"></div>
 	</section>
 	<footer>
-		<h4>User Manual</h4>
-		<nav>
-			<ul>
-				<li><a href="https://docs.mongodb.org/manual/core/crud-introduction/" target="_blank">CRUD Introduction</a></li>
-			</ul>
-		</nav>
+		<div>
+			<h4>User Manual</h4>
+			<nav>
+				<ul>
+					<li><a href="https://docs.mongodb.org/manual/core/crud-introduction/" target="_blank">CRUD Introduction</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div>
+			<h4><a href="http://php.net/manual/en/book.bson.php" target="_blank">MongoDB\BSON</a></h4>
+			<dl class='bson-type'>
+				<dt>ObjectID</dt><dd>{ "$oid": "5690010baba47e1f98007e7f" }</dd>
+				<dt>Regex</dt><dd>{ "$regex": "/[a-zA-Z]*/", "$options": "g" }</dd>
+				<dt>Timestamp</dt><dd>{ "$timestamp":{ "t": 1452278027,"i": 0 } }</dd>
+				<dt>UTCDateTime</dt><dd>{ "$date": 1452278027 }</dd>
+			</dl>
+			<span class="legend">see documentation for mor information</span>
+		</div>
 	</footer>
 </section>
 <?php $this->addCss('/vendor/jsoneditor/jsoneditor.min.css'); ?>

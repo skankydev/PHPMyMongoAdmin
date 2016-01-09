@@ -529,6 +529,16 @@ div[class*='trace-']{
 #Document nav{
 	margin-bottom: 4px;
 }
+#Document footer>div{
+	display: inline-block;
+	width: 40%;
+	vertical-align: top;
+}
+
+.bson-type{
+	font-size: 0.8em;
+	display: inline-block;
+}
 .cleafix{
 	overflow: auto;
 }

@@ -11,7 +11,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */
-namespace PHPMyMongoAdmin\Model\Collection;
+namespace PHPMyMongoAdmin\Collection;
 
 use PHPMyMongoAdmin\MasterCollection;
 use PHPMyMongoAdmin\Config\Config;

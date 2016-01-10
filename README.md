@@ -1,6 +1,6 @@
 #PHP My Mongo Admin
 
-vertion 0.0.1
+version 0.0.1
 
 ##work in progress
 

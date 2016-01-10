@@ -18,7 +18,6 @@ use PHPMyMongoAdmin\Config\Config;
 use PHPMyMongoAdmin\Utilities\Paginator;
 
 use MongoDB\Driver\Manager;
-use MongoDB\Collection;
 
 use stdClass;
 
@@ -28,7 +27,7 @@ class Collection extends MasterModel {
 	private $defaultQuery = ['query'=>[]];
 
 	public function getList($collectionName,$option = []){
-		$collection = new Collection($this->manager,$collectionName);
+		$collection = new \MongoDB\Collection($this->manager,$collectionName);
 		$option = array_replace_recursive($this->defaultQuery,$option);
 		$dOption = Config::get('paginator');
 		$option = array_replace_recursive($dOption,$option);
@@ -50,17 +49,17 @@ class Collection extends MasterModel {
 	}
 
 	public function dropCollection($collectionName){
-		$collection = new Collection($this->manager,$collectionName);
+		$collection = new \MongoDB\Collection($this->manager,$collectionName);
 		return $collection->drop();
 	}
 
 	public function insertMany($collectionName,$document){
-		$collection = new Collection($this->manager,$collectionName);
+		$collection = new \MongoDB\Collection($this->manager,$collectionName);
 		return $collection->insertMany($document);
 	}
 
 	public function aggregate($collectionName,$pipeline){
-		$collection = new Collection($this->manager,$collectionName);
+		$collection = new \MongoDB\Collection($this->manager,$collectionName);
 		$result = $collection->aggregate($pipeline);
 		return $result;
 	}

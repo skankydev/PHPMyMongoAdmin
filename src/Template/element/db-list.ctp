@@ -3,7 +3,7 @@
 	<?php 
 		$manager = new Database('DataBase');
 		$dbList = $manager->getDBList();
-		echo $this->link('creat database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
+		echo $this->link('create database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
 	?>
 	<ul>
 	<?php foreach ($dbList as $db): ?>

@@ -11,11 +11,9 @@
 <body>
 	<section id="Container">
 		<header id="Header">
-			<h1>PHP My Mongo Admin</h1>
-			<?php echo $this->element('menu'); ?>
+			<h1>PHP My Mongo Admin</h1><?php echo $this->element('menu'); ?>
 		</header>
-		<?php echo $this->element('db-list'); ?>
-		<section id="Contents">
+		<?php echo $this->element('db-list'); ?><section id="Contents">
 			<section id="Flash-Message"></section>
 			<?php echo $this->FlashMessages->display(); ?>
 			<?php echo $this->fetch('content'); ?>

@@ -16,7 +16,6 @@ namespace PHPMyMongoAdmin\Model;
 use PHPMyMongoAdmin\MasterModel;
 use MongoDB\Driver\Manager;
 use MongoDB\Client;
-use MongoDB\Database;
 
 use stdClass;
 
@@ -32,20 +31,20 @@ class Database extends MasterModel {
 		return $result;
 	}
 
-	function getCollectionList($dbName){
-		$database = new Database($this->manager,$dbName);
+	function getCollectionList($namespace){
+		$database = new \MongoDB\Database($this->manager,$namespace);
 		$retour = [];
 		$result = $database->listCollections();
 		return $result;
 	}
 
-	function dropDatabase($dbName){
-		$database = new Database($this->manager,$dbName);
+	function dropDatabase($namespace){
+		$database = new \MongoDB\Database($this->manager,$namespace);
 		return $database->drop();
 	}
 
-	function createCollection($dbName,$cName,$option = []){
-		$database = new Database($this->manager,$dbName);
+	function createCollection($namespace,$cName,$option = []){
+		$database = new \MongoDB\Database($this->manager,$namespace);
 		$result = $database->createCollection($cName,$option);//trow exception if not valide
 		return true;
 	}

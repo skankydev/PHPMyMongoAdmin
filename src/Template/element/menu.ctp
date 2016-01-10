@@ -1,8 +1,6 @@
 <?php 
 $params = $this->request->params;
 $controller = $this->request->controller;
-$controller = str_replace('Controller','',$controller);
-$controller = strtolower($controller);
 $action = $this->request->action;
 ?>
 <nav id="Menu">

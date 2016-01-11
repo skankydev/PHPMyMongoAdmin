@@ -28,5 +28,12 @@
 		</tfoot>
 	</table>
 	<footer>
+		<h4>User Manual</h4>
+		<nav>
+			<ul>
+				<li><a href="https://docs.mongodb.org/manual/" target="_blank">The MongoDB Manual</a></li>
+				<li><a href="http://php.net/manual/fr/set.mongodb.php" target="_blank">MongoDB driver</a></li>
+			</ul>
+		</nav>
 	</footer>
 </section>

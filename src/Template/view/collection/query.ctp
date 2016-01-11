@@ -1,6 +1,6 @@
 <section>
 	<header>
-		<h1>Aggregate: <?php echo $namespace; ?></h1>
+		<h1>Query: <?php echo $namespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
@@ -16,8 +16,9 @@
 		<h4>User Manual</h4>
 		<nav>
 			<ul>
-				<li><a href="https://docs.mongodb.org/manual/core/aggregation-introduction/" target="_blank">Aggregation Concepts</a></li>
-				<li><a href="https://docs.mongodb.org/manual/meta/aggregation-quick-reference/" target="_blank">Quick Reference</a></li>
+				<li><a href="http://docs.mongodb.org/manual/core/read-operations-introduction/" target="_blank">Query Concepts</a></li>
+				<li><a href="http://php.net/manual/fr/mongodb-driver-query.construct.php" target="_blank">MongoDB\Driver\Query</a></li>
+				<li><a href="https://docs.mongodb.org/manual/reference/operator/query/" target="_blank">Query Operators</a></li>
 			</ul>
 		</nav>
 	</footer>
@@ -35,11 +36,11 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url(['action'=>'aggregate','params'=>['namespace'=>$namespace]]).'\''; ?>,
-		<?php if(isset($pipeline)): ?>
-			json:<?php echo json_encode($pipeline); ?>
+		link:<?php echo '\''.$this->request->url(['action'=>'query','params'=>['namespace'=>$namespace]]).'\''; ?>,
+		<?php if(isset($query)): ?>
+			json:<?php echo json_encode($query); ?>
 		<?php else: ?>
-			json:[{"$match":{"fieldName": "value"}}]
+			json:{"filter":{"fieldName":"value"},"options":{"projection": {"fieldName": 1}}}
 		<?php endif ?>
 	};
 	$('#Editor').initJsonEdit(option);

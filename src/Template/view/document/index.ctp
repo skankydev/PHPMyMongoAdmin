@@ -37,11 +37,10 @@ if(isset($doc)){
 			<h4><a href="http://php.net/manual/en/book.bson.php" target="_blank">MongoDB\BSON</a></h4>
 			<dl class='bson-type'>
 				<dt>ObjectID</dt><dd>{ "$oid": "5690010baba47e1f98007e7f" }</dd>
-				<dt>Regex</dt><dd>{ "$regex": "/[a-zA-Z]*/", "$options": "g" }</dd>
 				<dt>Timestamp</dt><dd>{ "$timestamp":{ "t": 1452278027,"i": 0 } }</dd>
 				<dt>UTCDateTime</dt><dd>{ "$date": 1452278027 }</dd>
+				<dt>... </dt><dd>...</dd>
 			</dl>
-			<span class="legend">see documentation for mor information</span>
 		</div>
 	</footer>
 </section>
@@ -62,9 +61,9 @@ $(document).ready(function(){
 		container:'Editor',
 		link:<?php echo '\''.$this->request->url($link).'\''; ?>,
 		<?php if(isset($doc)): ?>
-			json:<?php echo MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>,
+			json:<?php echo MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>
 		<?php else: ?>
-			json:{},
+			json:{}
 		<?php endif ?>
 	};
 	$('#Editor').initJsonEdit(option);

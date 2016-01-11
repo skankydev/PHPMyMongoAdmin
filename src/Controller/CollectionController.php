@@ -88,4 +88,34 @@ class CollectionController extends MasterController {
 		$fV['cursor']    = $result;
 		$this->view->set($fV);
 	}
+
+	public function query($namespace){
+		if ($this->request->isPost()) {
+			$data = $this->request->getPost('json');
+			$data = json_decode($data,true);
+			
+			Session::set('query',$data);
+			$retour['result'] = true;
+			$retour['url'] = $this->request->url(['action'=>'queryexec','params'=>['namespace'=>$namespace]]);
+			echo json_encode($retour);die();
+		}
+		$query = Session::get('query');
+		if($query){
+			$fV['query']  = $query;
+		}
+		$fV['namespace'] = $namespace;
+		$this->view->set($fV);	
+	}
+
+	public function queryexec($namespace){
+		$query = Session::get('query');
+		if(!$query){
+			$this->request->redirect(['action'=>'query','params'=>['namespace'=>$namespace]]);
+		}
+		$result = $this->Collection->find($namespace,$query);
+		$fV['namespace'] = $namespace;
+		$fV['cursor']    = $result;
+		$fV['query']     = $query;
+		$this->view->set($fV);
+	}
 }

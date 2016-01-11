@@ -38,8 +38,6 @@
 				</tr>
 			<?php endforeach ?>
 		</tbody>
-		<tfoot>
-		</tfoot>
 	</table>
 	<footer>
 	</footer>

@@ -63,4 +63,10 @@ class Collection extends MasterModel {
 		$result = $collection->aggregate($pipeline);
 		return $result;
 	}
+
+	public function find($collectionName,$query){
+		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$result = $collection->find($query["filter"],$query["options"]);
+		return $result;
+	}
 }

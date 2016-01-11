@@ -13,6 +13,12 @@
 		<?php echo $this->Form->submit('Send'); ?>
 	<?php echo $this->Form->end(); ?>
 	<footer>
-		
+		<h4>Data Generator</h4>
+		<nav>
+			<ul>
+				<li><a href="https://www.mockaroo.com/" target="_blank">mockaroo</a></li>
+			</ul>
+		</nav>
+	</footer>
 	</footer>
 </section>

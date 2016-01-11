@@ -1,6 +1,5 @@
 # PHP My Mongo Admin
-
->small manager for a development environment
+a small manager for a development environment
 >version 0.0.1
 
 ## Requirements
@@ -13,8 +12,11 @@
 
 ## Install
 
+Click Download ZIP
+Unzip this file into the vhost directory
+
 `php composer.phar install` or `composer install`
 
 ## How to use
 
-read the mongodb documentation and have fun 
+read the [mongodb documentation](https://docs.mongodb.org/manual/) and have fun 

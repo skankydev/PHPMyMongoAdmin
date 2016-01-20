@@ -31,20 +31,20 @@ class Database extends MasterModel {
 		return $result;
 	}
 
-	function getCollectionList($namespace){
-		$database = new \MongoDB\Database($this->manager,$namespace);
+	function getCollectionList($myNamespace){
+		$database = new \MongoDB\Database($this->manager,$myNamespace);
 		$retour = [];
 		$result = $database->listCollections();
 		return $result;
 	}
 
-	function dropDatabase($namespace){
-		$database = new \MongoDB\Database($this->manager,$namespace);
+	function dropDatabase($myNamespace){
+		$database = new \MongoDB\Database($this->manager,$myNamespace);
 		return $database->drop();
 	}
 
-	function createCollection($namespace,$cName,$option = []){
-		$database = new \MongoDB\Database($this->manager,$namespace);
+	function createCollection($myNamespace,$cName,$option = []){
+		$database = new \MongoDB\Database($this->manager,$myNamespace);
 		$result = $database->createCollection($cName,$option);//trow exception if not valide
 		return true;
 	}

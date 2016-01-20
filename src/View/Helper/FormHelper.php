@@ -16,9 +16,7 @@ namespace PHPMyMongoAdmin\View\Helper;
 use PHPMyMongoAdmin\View\Helper\MasterHelper;
 use PHPMyMongoAdmin\View\Helper\Htmlhelper;
 use PHPMyMongoAdmin\Config\Config;
-/**
-* 
-*/
+
 class FormHelper extends MasterHelper {
 
 	use HtmlHelper;

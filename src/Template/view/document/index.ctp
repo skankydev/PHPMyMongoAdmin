@@ -1,14 +1,14 @@
 <?php 
 $link = ['controller'=>'document'];
 $link = ['action'=>'add'];
-$link['params']['namespace'] = $namespace;
+$link['params']['namespace'] = $myNamespace;
 if(isset($doc)){
 	$link['action'] ='edit';
 	$link['params']['id'] = $doc->_id.'';
 }
 ?>
 <section id="Document">
-	<header><h1>Document: <?php echo $namespace;?></h1></header>
+	<header><h1>Document: <?php echo $myNamespace;?></h1></header>
 	<nav>
 		<ul>
 			<li><span class="btn-menu-save">save</span></li>

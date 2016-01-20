@@ -1,27 +1,27 @@
 <section>
 	<header>
-		<h1><?php echo $namespace; ?></h1>
+		<h1><?php echo $myNamespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
 			<li>
-				<?php echo $this->link('add', ['controller'=>'document','action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+				<?php echo $this->link('add', ['controller'=>'document','action'=>'index','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
-				<?php echo $this->link('index', ['controller'=>'index','action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+				<?php echo $this->link('index', ['controller'=>'index','action'=>'index','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
-				<?php echo $this->link('query', ['action'=>'query','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+				<?php echo $this->link('query', ['action'=>'query','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
-				<?php echo $this->link('aggregate', ['action'=>'aggregate','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+				<?php echo $this->link('aggregate', ['action'=>'aggregate','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
-				<?php echo $this->link('import', ['action'=>'import','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?>
+				<?php echo $this->link('import', ['action'=>'import','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?>
 			</li>
 			<li>
 				<?php echo $this->link('drop',
-					['controller'=>'collection', 'action'=>'drop','params'=>['name'=>$namespace]],
+					['controller'=>'collection', 'action'=>'drop','params'=>['name'=>$myNamespace]],
 					['onclick'=>"return confirm('Are you sure?')",'class'=>'btn-menu error'] ); ?>
 			</li>
 		</ul>
@@ -34,12 +34,12 @@
 				<ul>
 					<li>
 						<?php echo $this->link('E',
-							['controller'=>'document','action'=>'index','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
+							['controller'=>'document','action'=>'index','params'=>['namespace'=>$myNamespace,'id'=>$value->_id]],
 							['class'=>'btn-action-edit']);?>
 					</li>
 					<li>
 						<?php echo $this->link('D',
-							['controller'=>'document','action'=>'delete','params'=>['namespace'=>$namespace,'id'=>$value->_id]],
+							['controller'=>'document','action'=>'delete','params'=>['namespace'=>$myNamespace,'id'=>$value->_id]],
 							['class'=>'btn-action-drop','onclick'=>"return confirm('Are you sure?')"]);?>
 					</li>
 				</ul>

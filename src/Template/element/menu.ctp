@@ -9,14 +9,12 @@ $action = $this->request->action;
 		if (isset($params[0])){
 			$name = $params[0];
 			$name = explode('.',$name);
+			echo '<li>'.$this->link($name[0], ['controller'=>'database','action'=>'view','params'=>['name'=>$name[0]]]).'</li>';
 			if (isset($name[1])){
-				echo '<li>'.$this->link($name[0], ['controller'=>'database','action'=>'view','params'=>['name'=>$name[0]]]).'</li>';
-				if($controller!=='collection' || $action!=='index'){
-					$text = $name;
-					unset($text[0]);
-					$text = join($text);
-					echo '<li>'.$this->link($text, ['controller'=>'collection','action'=>'index','params'=>['namespace'=>$params[0]]]).'</li>';
-				}
+				$text = $name;
+				unset($text[0]);
+				$text = join($text);
+				echo '<li>'.$this->link($text, ['controller'=>'collection','action'=>'index','params'=>['namespace'=>$params[0]]]).'</li>';
 			}
 		} ?>
 	</ul>

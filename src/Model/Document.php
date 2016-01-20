@@ -29,38 +29,38 @@ class Document extends MasterModel {
 	var $manager;
 	private $defaultQuery = ['query'=>[]];
 
-	public function read($namespace,$id){
+	public function read($myNamespace,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$namespace);
+		$collection = new Collection($this->manager,$myNamespace);
 		$id = new ObjectID($id);
 		$result = $collection->findOne(['_id'=>$id]);
 		return $result;
 	}
 
-	public function update($namespace,$data,$id){
+	public function update($myNamespace,$data,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$namespace);
+		$collection = new Collection($this->manager,$myNamespace);
 		$id = new ObjectID($id);
 		unset($data->_id);
 		$bulk = new BulkWrite();
 		$bulk->update(['_id'=>$id],$data);
-		$this->manager->executeBulkWrite($namespace,$bulk);//delete unset value
+		$this->manager->executeBulkWrite($myNamespace,$bulk);//delete unset value
 		
 		//$result = $collection->updateOne(['_id'=>$id],['$set'=>$data]);//keep unset value
 		return $result;
 	}
 
-	public function insert($namespace,$data){
+	public function insert($myNamespace,$data){
 		$result = [];
-		$collection = new Collection($this->manager,$namespace);
+		$collection = new Collection($this->manager,$myNamespace);
 		$result = $collection->insertOne($data);
 		
 		return $result;
 	}
 
-	public function delete($namespace,$id){
+	public function delete($myNamespace,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$namespace);
+		$collection = new Collection($this->manager,$myNamespace);
 		$id = new ObjectID($id);
 		$result = $collection->findOneAndDelete(['_id'=>$id]);
 		return $result;

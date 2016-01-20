@@ -1,6 +1,6 @@
 <section>
 	<header>
-		<h1>Query: <?php echo $namespace; ?></h1>
+		<h1>Query: <?php echo $myNamespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
@@ -36,7 +36,7 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url(['action'=>'query','params'=>['namespace'=>$namespace]]).'\''; ?>,
+		link:<?php echo '\''.$this->request->url(['action'=>'query','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
 		<?php if(isset($query)): ?>
 			json:<?php echo json_encode($query); ?>
 		<?php else: ?>

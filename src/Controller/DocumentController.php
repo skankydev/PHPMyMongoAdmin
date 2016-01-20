@@ -18,32 +18,32 @@ use PHPMyMongoAdmin\MasterController;
 
 class DocumentController extends MasterController {
 
-	function index($namespace,$id=''){
+	function index($myNamespace,$id=''){
 		$document = new \stdClass();
-		$data = ['namespace' => $namespace];
+		$data = ['myNamespace' => $myNamespace];
 		if(!empty($id)){
-			$data['doc'] = $this->Document->read($namespace,$id);
+			$data['doc'] = $this->Document->read($myNamespace,$id);
 		}
 		$this->view->set($data);
 	}
 
-	public function add($namespace){
+	public function add($myNamespace){
 		$this->view->displayLayout = false;
-		$fView['namespace'] = $namespace;
+		$fView['myNamespace'] = $myNamespace;
 		$fView['message'] = '';
 		$fView['result'] = true;
 		if($this->request->isPost()){
 			try {
 				$data = $this->request->getPost('json');
 				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
-				$result = $this->Document->insert($namespace,$data);
+				$result = $this->Document->insert($myNamespace,$data);
 				$data->_id = $result->getInsertedId();
 			} catch (\Exception $e) {
 				$fView['result'] = false;
 				$fView['message'] = $e->getCode().':'.$e->getMessage();
 			}
 			$fView['data'] = $data;
-			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 			//reponse en json
 			if($fView['result']){
 				$this->FlashMessages->set("The Document has been create",['class' => 'success']);
@@ -52,22 +52,22 @@ class DocumentController extends MasterController {
 		$this->view->set(['json'=>$fView]);
 	}
 
-	public function edit($namespace,$id){
+	public function edit($myNamespace,$id){
 		$this->view->displayLayout = false;
-		$fView['namespace'] = $namespace;
+		$fView['myNamespace'] = $myNamespace;
 		$fView['message'] = '';
 		$fView['result'] = true;
 		if($this->request->isPost()){
 			try {
 				$data = $this->request->getPost('json');
 				$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));
-				$result = $this->Document->update($namespace,$data,$id);				
+				$result = $this->Document->update($myNamespace,$data,$id);				
 			} catch (\Exception $e) {
 				$fView['result'] = false;
 				$fView['message'] = $e->getCode().':'.$e->getMessage();				
 			}
 			$fView['data'] = $data;
-			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+			$fView['url'] = $this->request->url(['controller'=>'collection','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 			if($fView['result']){
 				$this->FlashMessages->set("The Document has been updated",['class' => 'success']);
 			}
@@ -75,10 +75,10 @@ class DocumentController extends MasterController {
 		$this->view->set(['json'=>$fView]);
 	}
 
-	public function delete($namespace,$id){
-		$this->Document->delete($namespace,$id);
+	public function delete($myNamespace,$id){
+		$this->Document->delete($myNamespace,$id);
 		$this->FlashMessages->set("The Document $id has been dropped",['class' => 'success']);
-		$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+		$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 	}
 
 }

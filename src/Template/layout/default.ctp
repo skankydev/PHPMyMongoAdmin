@@ -13,10 +13,12 @@
 		<header id="Header">
 			<h1>PHP My Mongo Admin</h1><?php echo $this->element('menu'); ?>
 		</header>
-		<?php echo $this->element('db-list'); ?><section id="Contents">
-			<section id="Flash-Message"></section>
-			<?php echo $this->FlashMessages->display(); ?>
-			<?php echo $this->fetch('content'); ?>
+		<section class="layout-content">
+		<?php echo $this->element('db-list'); ?>
+		<section id="Contents">
+			<section id="Flash-Message"><?php echo $this->FlashMessages->display(); ?></section>
+				<?php echo $this->fetch('content'); ?>
+			</section>
 		</section>
 		<footer id="Footer">
 			<?php 

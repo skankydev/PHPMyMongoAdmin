@@ -1,8 +1,8 @@
 <section>
-	<header><h1>Index: <?php echo $namespace; ?></h1> </header>
+	<header><h1>Index: <?php echo $myNamespace; ?></h1> </header>
 	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?></li>
+			<li><?php echo $this->link('create Index', ['action'=>'add','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
 		</ul>
 	</nav>
 	<table>
@@ -26,7 +26,7 @@
 				<td><?php echo $index->isTtl()?'yes':'no'; ?></td>
 				<td><?php echo $index->isUnique()?'yes':'no'; ?></td>
 				<td><?php echo $index->getVersion(); ?></td>
-				<td><?php echo $this->link('drop', ['action'=>'drop','params'=>['namespace'=>$namespace,'index'=>$index->getName()]]);?></td>
+				<td><?php echo $this->link('drop', ['action'=>'drop','params'=>['namespace'=>$myNamespace,'index'=>$index->getName()]]);?></td>
 			</tr>
 			<?php endforeach ?>			
 		</tbody>

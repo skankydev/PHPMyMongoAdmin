@@ -92,14 +92,14 @@ thead tr{
 	border: 1px solid #BEBEBE;
 	margin-bottom: 0;
 	padding: 0 8px;
-	background: linear-gradient(to bottom, rgba(237,237,237,1) 5%,rgba(223,223,223,1) 100%);
+	background: rgba(105,178,65,1);
 	height: 32px;
 }
 tbody {
 
 }
 tbody tr:nth-child(2n){
-	background: #F1F1F1;
+	background: rgba(105,178,65,0.1);
 }
 td,th {
 	padding: 2px;
@@ -419,20 +419,19 @@ nav input[type="file"] + label{
 .action-menu{
 }
 /*--------------------------------*/
+.layout-content{
+	display: flex;
+	flex-direction:row;
+}
 #SideBar{
-	display: inline-block;
-	width: 25%;
-	position: relative;
-	bottom: 0;
-	vertical-align: top;
 	padding: 8px;
+	flex-grow:1;
 }
 #Contents{
-	display: inline-block;
-	width: 74%;
-	vertical-align: top;
+	width: 80%;
 	padding: 8px;
 }
+
 #Footer{
 	border-top: 1px solid #69B241;
 	text-align:right;
@@ -491,7 +490,6 @@ div[class*='trace-']{
 .hideaway-btn{
 	cursor: pointer;
 }
-
 
 .db-link-mini,
 .db-link{

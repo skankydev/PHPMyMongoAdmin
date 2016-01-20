@@ -19,16 +19,16 @@ use PHPMyMongoAdmin\Utilities\Session;
 
 class CollectionController extends MasterController {
 
-	function index($namespace, $page = 1){
+	function index($myNamespace, $page = 1){
 		$option = [
 			'page'=>(int)$page,
 		];
-		$data = $this->Collection->getList($namespace,$option);
-		$data->setParams(['collection'=>$namespace]);
-		$this->view->set(['data'=>$data,'namespace'=>$namespace]);
+		$data = $this->Collection->getList($myNamespace,$option);
+		$data->setParams(['collection'=>$myNamespace]);
+		$this->view->set(['data'=>$data,'myNamespace'=>$myNamespace]);
 	}
 
-	public function import($namespace){
+	public function import($myNamespace){
 		if($this->request->isPost()){
 			$files = $this->request->getFiles();
 			$exe = explode('.', $files['import']['name']);
@@ -36,84 +36,88 @@ class CollectionController extends MasterController {
 			if($exe==='json'){
 				$content = file_get_contents($files['import']['tmp_name']);
 				$content = json_decode($content,true);
-				$result = $this->Collection->insertMany($namespace,$content);
+				$result = $this->Collection->insertMany($myNamespace,$content);
 				$this->FlashMessages->set("Your file has been imported",['class' => 'success']);
-				$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['namespace'=>$namespace]]);
+				$this->request->redirect(['controller'=>'collection','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 			}else{
 				$this->FlashMessages->set("your file must be in .json format",['class' => 'error']);
 			}
 		}
-		$this->view->set(['namespace'=>$namespace]);
+		$this->view->set(['myNamespace'=>$myNamespace]);
 	}
 
-	public function drop($namespace){
-		if(!empty($namespace)){
-			$result = $this->Collection->dropCollection($namespace);
+	public function drop($myNamespace){
+		if(!empty($myNamespace)){
+			$result = $this->Collection->dropCollection($myNamespace);
 			if($result->ok==1){
-				$this->FlashMessages->set("The Collection $namespace has been dropped",['class' => 'success']);
+				$this->FlashMessages->set("The Collection $myNamespace has been dropped",['class' => 'success']);
 			}else{
-				$this->FlashMessages->set("An error occurred when dropping $namespace: $result->errmsg",['class' => 'error']);
+				$this->FlashMessages->set("An error occurred when dropping $myNamespace: $result->errmsg",['class' => 'error']);
 			}
-			$tmp = explode('.',$namespace);
+			$tmp = explode('.',$myNamespace);
 			$this->request->redirect(['controller'=>'database','action'=>'view','params'=>['dbName'=>$tmp[0]]]);
 		}
 	}
 
-	public function aggregate($namespace){
+	public function aggregate($myNamespace){
 		if ($this->request->isPost()) {
 			$data = $this->request->getPost('json');
 			$data = json_decode($data,true);
 			//$data = \MongoDB\BSON\toPHP(\MongoDB\BSON\fromJSON($data));//error with external $oid
 			Session::set('pipeline',$data);
 			$retour['result'] = true;
-			$retour['url'] = $this->request->url(['action'=>'run','params'=>['namespace'=>$namespace]]);
+			$retour['url'] = $this->request->url(['action'=>'run','params'=>['myNamespace'=>$myNamespace]]);
 			echo json_encode($retour);die();
 		}
 		$pipeline = Session::get('pipeline');
 		if($pipeline){
 			$fV['pipeline']  = $pipeline;
 		}
-		$fV['namespace'] = $namespace;
+		$fV['myNamespace'] = $myNamespace;
 		$this->view->set($fV);
 	}
 
-	public function run($namespace){
+	public function run($myNamespace){
 		$pipeline = Session::get('pipeline');
 		if(!$pipeline){
-			$this->request->redirect(['action'=>'aggregate','params'=>['namespace'=>$namespace]]);
+			$this->request->redirect(['action'=>'aggregate','params'=>['myNamespace'=>$myNamespace]]);
 		}
-		$result = $this->Collection->aggregate($namespace,$pipeline);
-		$fV['namespace'] = $namespace;
+		$result = $this->Collection->aggregate($myNamespace,$pipeline);
+		$fV['myNamespace'] = $myNamespace;
 		$fV['pipeline']  = $pipeline;
 		$fV['cursor']    = $result;
 		$this->view->set($fV);
 	}
 
-	public function query($namespace){
+	public function query($myNamespace){
 		if ($this->request->isPost()) {
 			$data = $this->request->getPost('json');
 			$data = json_decode($data,true);
-			
+			if(!isset($data['filter'])){$data['filter']=[];}
+			if(!isset($data['options'])){$data['options']=[];}
 			Session::set('query',$data);
 			$retour['result'] = true;
-			$retour['url'] = $this->request->url(['action'=>'queryexec','params'=>['namespace'=>$namespace]]);
+			$retour['url'] = $this->request->url(['action'=>'queryexec','params'=>['myNamespace'=>$myNamespace]]);
 			echo json_encode($retour);die();
 		}
 		$query = Session::get('query');
 		if($query){
 			$fV['query']  = $query;
 		}
-		$fV['namespace'] = $namespace;
+		$fV['myNamespace'] = $myNamespace;
 		$this->view->set($fV);	
 	}
 
-	public function queryexec($namespace){
+	public function queryexec($myNamespace, $page = 1){
 		$query = Session::get('query');
 		if(!$query){
-			$this->request->redirect(['action'=>'query','params'=>['namespace'=>$namespace]]);
+			$this->request->redirect(['action'=>'query','params'=>['myNamespace'=>$myNamespace]]);
 		}
-		$result = $this->Collection->find($namespace,$query);
-		$fV['namespace'] = $namespace;
+		$query['options']['page'] = (int)$page;
+		$result = $this->Collection->find($myNamespace,$query);
+		unset($query['options']['page']);
+		$result->setParams(['collection'=>$myNamespace]);
+		$fV['myNamespace'] = $myNamespace;
 		$fV['cursor']    = $result;
 		$fV['query']     = $query;
 		$this->view->set($fV);

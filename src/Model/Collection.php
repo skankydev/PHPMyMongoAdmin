@@ -66,7 +66,21 @@ class Collection extends MasterModel {
 
 	public function find($collectionName,$query){
 		$collection = new \MongoDB\Collection($this->manager,$collectionName);
-		$result = $collection->find($query["filter"],$query["options"]);
-		return $result;
+		$filter = $query['filter'];
+		$option = $query['options'];
+		$dOption = Config::get('paginator');
+
+		$option = array_replace_recursive($dOption,$option);
+		$option['skip'] = $option['limit']*($option['page']-1);
+		$option['count'] = $collection->count($filter);
+		$result = $collection->find($filter,$option);
+		foreach ($result as $data) {
+			$retour[]=$data;
+		}
+		$paginator = new Paginator($retour);
+		unset($option['skip']);
+		$paginator->setOption($option);
+
+		return $paginator;
 	}
 }

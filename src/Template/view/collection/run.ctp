@@ -1,9 +1,9 @@
 <section>
-	<header><h1>Index: <?php echo $namespace; ?></h1> </header>
+	<header><h1>Index: <?php echo $myNamespace; ?></h1> </header>
 	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('edite', ['action'=>'aggregate','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?></li>
-			<li><?php echo $this->link('collection', ['action'=>'index','params'=>['namespace'=>$namespace]],['class'=>'btn-menu']);?></li>
+			<li><?php echo $this->link('edite', ['action'=>'aggregate','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
+			<li><?php echo $this->link('collection', ['action'=>'index','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
 		</ul>
 	</nav>
 	<section>

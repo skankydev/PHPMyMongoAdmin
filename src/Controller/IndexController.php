@@ -18,42 +18,42 @@ use PHPMyMongoAdmin\MasterController;
 
 class IndexController extends MasterController {
 
-	function index($namespace){
-		$list = $this->Index->getList($namespace);
-		$this->view->set(['list' => $list,'namespace'=>$namespace]);
+	function index($myNamespace){
+		$list = $this->Index->getList($myNamespace);
+		$this->view->set(['list' => $list,'myNamespace'=>$myNamespace]);
 	}
 
-	public function add($namespace){
+	public function add($myNamespace){
 		if($this->request->isPost()){
-			$fView['namespace'] = $namespace;
+			$fView['myNamespace'] = $myNamespace;
 			$fView['message'] = '';
 			$fView['result'] = true;
 			$this->view->displayLayout = false;
 			$data = $this->request->getPost('json');
 			$data = json_decode($data,true);
 			try {
-				$result = $this->Index->createIndexes($namespace,$data);
+				$result = $this->Index->createIndexes($myNamespace,$data);
 			} catch (\Exception $e) {
 				$fView['result'] = false;
 				$fView['message'] = $e->getCode().':'.$e->getMessage();
 			}
-			$fView['url'] = $this->request->url(['controller'=>'index','action'=>'index','params'=>['namespace'=>$namespace]]);
+			$fView['url'] = $this->request->url(['controller'=>'index','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 			if($fView['result']){
 				$this->FlashMessages->set("The index has been create",['class' => 'success']);
 			}
 			echo json_encode($fView);die();
 		}
-		$this->view->set(['namespace'=>$namespace]);
+		$this->view->set(['myNamespace'=>$myNamespace]);
 	}
 
-	public function edit($namespace){
+	public function edit($myNamespace){
 		
 	}
 
-	public function drop($namespace,$index){
-		$this->Index->dropIndex($namespace,$index);
+	public function drop($myNamespace,$index){
+		$this->Index->dropIndex($myNamespace,$index);
 		$this->FlashMessages->set("The index $id has been dropped",['class' => 'success']);
-		$this->request->redirect(['controller'=>'index','action'=>'index','params'=>['$namespace'=>$namespace]]);
+		$this->request->redirect(['controller'=>'index','action'=>'index','params'=>['myNamespace'=>$myNamespace]]);
 	}
 
 }

@@ -31,7 +31,7 @@ class Document extends MasterModel {
 
 	public function read($myNamespace,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		$id = new ObjectID($id);
 		$result = $collection->findOne(['_id'=>$id]);
 		return $result;
@@ -39,7 +39,7 @@ class Document extends MasterModel {
 
 	public function update($myNamespace,$data,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		$id = new ObjectID($id);
 		unset($data->_id);
 		$bulk = new BulkWrite();
@@ -52,7 +52,7 @@ class Document extends MasterModel {
 
 	public function insert($myNamespace,$data){
 		$result = [];
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		$result = $collection->insertOne($data);
 		
 		return $result;
@@ -60,7 +60,7 @@ class Document extends MasterModel {
 
 	public function delete($myNamespace,$id){
 		$result = [];
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		$id = new ObjectID($id);
 		$result = $collection->findOneAndDelete(['_id'=>$id]);
 		return $result;

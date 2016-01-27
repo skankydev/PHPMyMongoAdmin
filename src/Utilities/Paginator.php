@@ -33,7 +33,6 @@ class Paginator implements Iterator {
 	 */
 	function __construct($data){
 		$this->data = $data;
-		
 	}
 
 	/**

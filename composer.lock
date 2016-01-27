@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d434805dd8a8a675238c1769b8ddc0e4",
-    "content-hash": "a2cb0ee0673d47f75cdc5c7cc3033a94",
+    "hash": "255bbd1d490036c7a29996b4adc7bdae",
+    "content-hash": "92d2cd02e1787f06b51e564ffe00a29c",
     "packages": [
         {
             "name": "mongodb/mongodb",
-            "version": "1.0.0-beta2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "e8177e87efe74437b812915887d416f5b68b4e30"
+                "reference": "851a560864281cbf91fe182aefed85bfc3395031"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/e8177e87efe74437b812915887d416f5b68b4e30",
-                "reference": "e8177e87efe74437b812915887d416f5b68b4e30",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/851a560864281cbf91fe182aefed85bfc3395031",
+                "reference": "851a560864281cbf91fe182aefed85bfc3395031",
                 "shasum": ""
             },
             "require": {
-                "ext-mongodb": "^1.1.1",
+                "ext-mongodb": "^1.1.0",
                 "php": ">=5.4"
             },
             "type": "library",
@@ -65,15 +65,13 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2015-12-28 19:40:56"
+            "time": "2016-01-21 19:43:25"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "mongodb/mongodb": 10
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -27,7 +27,7 @@ class Collection extends MasterModel {
 	private $defaultQuery = ['query'=>[]];
 
 	public function getList($collectionName,$option = []){
-		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$collection = $this->getCollection($collectionName);
 		$option = array_replace_recursive($this->defaultQuery,$option);
 		$dOption = Config::get('paginator');
 		$option = array_replace_recursive($dOption,$option);
@@ -49,23 +49,23 @@ class Collection extends MasterModel {
 	}
 
 	public function dropCollection($collectionName){
-		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$collection = $this->getCollection($collectionName);
 		return $collection->drop();
 	}
 
 	public function insertMany($collectionName,$document){
-		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$collection = $this->getCollection($collectionName);
 		return $collection->insertMany($document);
 	}
 
 	public function aggregate($collectionName,$pipeline){
-		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$collection = $this->getCollection($collectionName);
 		$result = $collection->aggregate($pipeline);
 		return $result;
 	}
 
 	public function find($collectionName,$query){
-		$collection = new \MongoDB\Collection($this->manager,$collectionName);
+		$collection = $this->getCollection($collectionName);
 		$filter = $query['filter'];
 		$option = $query['options'];
 		$dOption = Config::get('paginator');
@@ -74,9 +74,12 @@ class Collection extends MasterModel {
 		$option['skip'] = $option['limit']*($option['page']-1);
 		$option['count'] = $collection->count($filter);
 		$result = $collection->find($filter,$option);
+		$retour = [];
 		foreach ($result as $data) {
 			$retour[]=$data;
 		}
+		debug($filter);
+		debug($option);
 		$paginator = new Paginator($retour);
 		unset($option['skip']);
 		$paginator->setOption($option);

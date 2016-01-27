@@ -28,17 +28,17 @@ class Index extends MasterModel {
 	private $defaultQuery = ['query'=>[]];
 
 	public function getList($myNamespace){
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		return $collection->listIndexes();
 	}
 
 	public function createIndexes($myNamespace,$index){
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		return $collection->createIndexes($index);
 	}
 
 	public function dropIndex($myNamespace,$index){
-		$collection = new Collection($this->manager,$myNamespace);
+		$collection = $this->getCollection($myNamespace);
 		return $collection->dropIndex($index);
 	}
 }

@@ -1,5 +1,5 @@
 <?php $aClass = 'btn-paging'; ?>
-<nav id="Paginatore">
+<nav id="Paginator">
 	<ul class="paging">
 		<?php $class = $aClass; if($first==$prev) $class .= ' paging-disabled'; ?>	
 		<li>

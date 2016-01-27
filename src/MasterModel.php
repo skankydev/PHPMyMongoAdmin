@@ -58,4 +58,14 @@ class MasterModel
 		
 		return new $name($collection);
 	}
+
+	public function getCollection($name){
+		$tmp = explode('.', $name);//we c'est la fete des truc chelou 
+		$db = $tmp[0];
+		unset($tmp[0]);
+		$collection = join($tmp,'.');
+
+		return new \MongoDB\Collection($this->manager,$db,$collection);
+
+	}
 }

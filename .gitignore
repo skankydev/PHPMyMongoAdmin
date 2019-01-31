@@ -43,3 +43,4 @@ Temporary Items
 
 /vendor/
 composer.lock
+.phpintel

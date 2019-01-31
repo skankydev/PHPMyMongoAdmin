@@ -17,7 +17,7 @@ namespace PHPMyMongoAdmin\Utilities\Traits;
 /**
 * 
 */
-trait Iterable {
+trait IterableData {
 
 	/**
 	 * Rewind the Iterator to the first element

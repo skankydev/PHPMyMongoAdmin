@@ -110,7 +110,6 @@ class CollectionController extends MasterController {
 
 	public function queryexec($myNamespace, $page = 1){
 		$query = Session::get('query');
-		debug($query);
 		if(!$query){
 			$this->request->redirect(['action'=>'query','params'=>['myNamespace'=>$myNamespace]]);
 		}

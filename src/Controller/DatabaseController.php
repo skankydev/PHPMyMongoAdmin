@@ -41,6 +41,7 @@ class DatabaseController extends MasterController {
 					$option['max'] = (int)$data->max;
 				}
 			}
+			//debug($option);die();
 			if($this->Database->createCollection($data->database,$data->collection,$option)){
 				$this->FlashMessages->set("The Collection $data->collection has been create",['class' => 'success']);
 				$this->request->redirect(['controller'=>'database','action'=>'view','params'=>['dbName'=>$data->database]]);

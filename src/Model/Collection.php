@@ -78,8 +78,6 @@ class Collection extends MasterModel {
 		foreach ($result as $data) {
 			$retour[]=$data;
 		}
-		debug($filter);
-		debug($option);
 		$paginator = new Paginator($retour);
 		unset($option['skip']);
 		$paginator->setOption($option);

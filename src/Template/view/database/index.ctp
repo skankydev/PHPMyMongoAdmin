@@ -33,6 +33,7 @@
 			<ul>
 				<li><a href="https://docs.mongodb.org/manual/" target="_blank">The MongoDB Manual</a></li>
 				<li><a href="http://php.net/manual/fr/set.mongodb.php" target="_blank">MongoDB driver</a></li>
+				<li><a href="https://docs.mongodb.com/php-library/current/">MongoDB Manual For PHP</a></li>
 			</ul>
 		</nav>
 	</footer>

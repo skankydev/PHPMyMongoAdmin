@@ -26,6 +26,7 @@
 			</li>
 		</ul>
 	</nav>
+	
 	<section id="many-editor">
 		<?php foreach ($data as $value): ?>
 		<div class="document">
@@ -48,7 +49,7 @@
 			<div class="editor">
 			<?php 
 				//we bon c'est un peux moche tout ca 
-				echo  MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value));
+				echo  htmlentities(MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value)));
 			?>
 			</div>
 		</div>

@@ -13,7 +13,7 @@
  */
 namespace PHPMyMongoAdmin\Utilities;
 
-use PHPMyMongoAdmin\Utilities\Traits\Iterable;
+use PHPMyMongoAdmin\Utilities\Traits\IterableData;
 use PHPMyMongoAdmin\Config\Config;
 use Iterator;
 
@@ -22,7 +22,7 @@ use Iterator;
 */
 class Paginator implements Iterator {
 	
-	use Iterable;
+	use IterableData;
 
 	var $data = [];
 	var $option = ['params'=>[]];

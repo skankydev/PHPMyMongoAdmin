@@ -94,7 +94,7 @@ class Config {
 			$mConf = require APP_FOLDER.DS."config".DS."master.config.php";
 			$tmpConf = [];
 			$conf = array_replace_recursive($tmpConf,$mConf);
-			$dConf = require DS.'default.config.php';
+			$dConf = require 'default.config.php';
 			self::$conf = array_replace_recursive($dConf,$conf);
 		}
 

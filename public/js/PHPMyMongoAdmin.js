@@ -32,7 +32,7 @@ $(document).ready(function(){
 	});
 
 	$.fn.initJsonEdit = function (option){
-		console.log(option);
+		
 		var container = document.getElementById(option.container);
 		var editor = new JSONEditor(container, option.editOption);
 		var reader = new FileReader();

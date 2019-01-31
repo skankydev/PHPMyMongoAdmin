@@ -31,6 +31,8 @@ class IndexController extends MasterController {
 			$this->view->displayLayout = false;
 			$data = $this->request->getPost('json');
 			$data = json_decode($data,true);
+			debug($myNamespace);
+			debug($data);die();
 			try {
 				$result = $this->Index->createIndexes($myNamespace,$data);
 			} catch (\Exception $e) {

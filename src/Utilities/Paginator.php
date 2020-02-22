@@ -24,8 +24,8 @@ class Paginator implements Iterator {
 	
 	use IterableData;
 
-	var $data = [];
-	var $option = ['params'=>[]];
+	private $data = [];
+	private $option = ['params'=>[]];
 	
 	/**
 	 * construct

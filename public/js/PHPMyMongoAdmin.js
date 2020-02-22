@@ -12,11 +12,12 @@
  */
 
 $(document).ready(function(){
+
 	$('.hideaway').on('click','.hideaway-btn',function(event){
 		event.stopPropagation();
-		var me = $(event.delegateTarget);
-		var display = me.children('section').css('display');
-		var list = me.parent('.hideaway-list');
+		let me = $(event.delegateTarget);
+		let display = me.children('section').css('display');
+		let list = me.parent('.hideaway-list');
 		if(list.attr('class')){
 			list.children('.hideaway').children('section').css('display','none');
 		}
@@ -27,32 +28,37 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.btn-show-collection').on('click',function(e){
+		let parent = $(this).parents('.db-list');
+		parent.find('.db-collections-wrapper').toggleClass('open');
+	});
+
 	$('.flash-message').on('click',function(event){
 		$(this).remove();
 	});
 
 	$.fn.initJsonEdit = function (option){
 		
-		var container = document.getElementById(option.container);
-		var editor = new JSONEditor(container, option.editOption);
-		var reader = new FileReader();
+		let container = document.getElementById(option.container);
+		let editor = new JSONEditor(container, option.editOption);
+		let reader = new FileReader();
 		editor.set(option.json);
 
 		/*when the file is done*/
 		reader.onload = function(event){
-			var text = event.target.result;
+			let text = event.target.result;
 			editor.set(JSON.parse(text));
 		};
 
 		//c'est la meme chose que l autre. a grouper!
 		$('.btn-menu-save').on('click',function(event){
-			var json = editor.get();
+			let json = editor.get();
 			$.post(option.link,{json:JSON.stringify(json)},function(data){
 				if(data.result){
 					window.location.replace(data.url);
 				}else{
 					//create aletre
-					var text = '<div class="flash-message error">'+data.message+'<div>';
+					let text = '<div class="flash-message error">'+data.message+'<div>';
 					$("#Flash-Message").html(text);
 				}
 			},'json');
@@ -63,8 +69,8 @@ $(document).ready(function(){
 		});
 
 		$('.btn-menu-file').on('click',function(event){
-			var blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
-			var url = URL.createObjectURL(blob);
+			let blob = new Blob([editor.getText()], {type: 'application/json;charset=utf-8'});
+			let url = URL.createObjectURL(blob);
 			window.open(url);
 		});
 	}

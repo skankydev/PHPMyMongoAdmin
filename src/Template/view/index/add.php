@@ -1,6 +1,6 @@
 <section>
 	<header>
-		<h1>Create Index <?php echo $myNamespace; ?></h1>
+		<h1>Create Index <?= $myNamespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
@@ -37,7 +37,7 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url(['action'=>'add','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
+		link:<?= '\''.$this->request->url(['action'=>'add','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
 		json:[{"key":{"field_name_A": 1,},"name": "index_name","background": true}]
 	};
 	$('#Editor').initJsonEdit(option);

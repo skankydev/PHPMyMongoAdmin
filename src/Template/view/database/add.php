@@ -11,13 +11,13 @@ $params = ['pattern'=>'[a-zA-Z.]*','title'=>"a-z A-z ."];
 				$dbOption['type'] = 'hidden';
 				unset($dbOption['label']);
 			?>
-			<h1><?php echo $dbName; ?></h1>
+			<h1><?= $dbName; ?></h1>
 		<?php else: ?>
 			<h1>Create database</h1>
 		<?php endif ?>
 	</header>
-	<?php echo $this->Form->start($this->request->url(['action'=>'add','params'=>$params])); ?>
-		<?php echo $this->Form->fieldset([
+	<?= $this->Form->start($this->request->url(['action'=>'add','params'=>$params])); ?>
+		<?= $this->Form->fieldset([
 			'legend'  => ['content'=>'creat a new collection'],
 			'input'   => [
 					'database'       => $dbOption,
@@ -28,8 +28,8 @@ $params = ['pattern'=>'[a-zA-Z.]*','title'=>"a-z A-z ."];
 					'max'            => ['label'=>'maximum number of documents','type'=>'number'],
 				]
 		]); ?>
-		<?php echo $this->Form->submit('Send'); ?>
-	<?php echo $this->Form->end(); ?>
+		<?= $this->Form->submit('Send'); ?>
+	<?= $this->Form->end(); ?>
 	<footer>
 	<h4>User Manual</h4>
 	<nav>

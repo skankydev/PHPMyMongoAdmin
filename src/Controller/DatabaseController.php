@@ -25,7 +25,18 @@ class DatabaseController extends MasterController {
 
 	public function view($dbName = ''){
 		$collectionList = $this->Database->getCollectionList($dbName);
-		$this->view->set(['dbName' => $dbName,'collectionList'=>$collectionList]);
+		$list = [];
+		foreach ($collectionList as $key => $collection) {
+			$list[] = [
+				'name' => $collection->getName(),
+				'size' => $collection->getCappedSize(),
+				'number' => $collection->getCappedMax(),
+			];
+		}
+		usort($list,function($a,$b) {
+			return strnatcmp($a['name'], $b['name']);
+		});
+		$this->view->set(['dbName' => $dbName,'collectionList'=>$list]);
 	}
 
 	public function add($dbName = ''){

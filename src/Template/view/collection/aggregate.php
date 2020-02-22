@@ -1,6 +1,6 @@
 <section>
 	<header>
-		<h1>Aggregate: <?php echo $myNamespace; ?></h1>
+		<h1>Aggregate: <?= $myNamespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
@@ -35,9 +35,9 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url(['action'=>'aggregate','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
+		link:<?= '\''.$this->request->url(['action'=>'aggregate','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
 		<?php if(isset($pipeline)): ?>
-			json:<?php echo json_encode($pipeline); ?>
+			json:<?= json_encode($pipeline); ?>
 		<?php else: ?>
 			json:[{"$match":{"fieldName": "value"}}]
 		<?php endif ?>

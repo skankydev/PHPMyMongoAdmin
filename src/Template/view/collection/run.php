@@ -1,21 +1,21 @@
 <section>
-	<header><h1>Index: <?php echo $myNamespace; ?></h1> </header>
+	<header><h1>Index: <?= $myNamespace; ?></h1> </header>
 	<nav class="pages-menu">
 		<ul>
-			<li><?php echo $this->link('edite', ['action'=>'aggregate','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
-			<li><?php echo $this->link('collection', ['action'=>'index','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
+			<li><?= $this->link('edite', ['action'=>'aggregate','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
+			<li><?= $this->link('collection', ['action'=>'index','params'=>['namespace'=>$myNamespace]],['class'=>'btn-menu']);?></li>
 		</ul>
 	</nav>
 	<section>
 		<div class="pipeline">
-			<?php echo json_encode($pipeline); ?>
+			<?= json_encode($pipeline); ?>
 		</div>
 	</section>
 	<section id="many-editor">
 		<?php foreach ($cursor as $value): ?>
 		<div class="document">
 			<div class="editor">
-			<?php echo  MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value)); ?>
+			<?=  MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($value)); ?>
 			</div>
 		</div>
 		<?php endforeach ?>

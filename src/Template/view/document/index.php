@@ -8,7 +8,7 @@ if(isset($doc)){
 }
 ?>
 <section id="Document">
-	<header><h1>Document: <?php echo $myNamespace;?></h1></header>
+	<header><h1>Document: <?= $myNamespace;?></h1></header>
 	<nav>
 		<ul>
 			<li><span class="btn-menu-save">save</span></li>
@@ -59,9 +59,9 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url($link).'\''; ?>,
+		link:<?= '\''.$this->request->url($link).'\''; ?>,
 		<?php if(isset($doc)): ?>
-			json:<?php echo MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>
+			json:<?= MongoDB\BSON\toJSON(MongoDB\BSON\fromPHP($doc)); ?>
 		<?php else: ?>
 			json:{}
 		<?php endif ?>

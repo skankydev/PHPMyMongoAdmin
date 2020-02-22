@@ -1,6 +1,6 @@
 <section>
 	<header>
-		<h1>Query: <?php echo $myNamespace; ?></h1>
+		<h1>Query: <?= $myNamespace; ?></h1>
 	</header>
 	<nav class="pages-menu">
 		<ul>
@@ -36,9 +36,9 @@ $(document).ready(function(){
 			error: function (err) {alert(err.toString());}
 		},
 		container:'Editor',
-		link:<?php echo '\''.$this->request->url(['action'=>'query','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
+		link:<?= '\''.$this->request->url(['action'=>'query','params'=>['namespace'=>$myNamespace]]).'\''; ?>,
 		<?php if(isset($query)): ?>
-			json:<?php echo json_encode($query); ?>
+			json:<?= json_encode($query); ?>
 		<?php else: ?>
 			json:{"filter":{"fieldName":"value"},"options":{"projection": {"fieldName": 1}}}
 		<?php endif ?>

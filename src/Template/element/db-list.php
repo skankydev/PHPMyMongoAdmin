@@ -1,40 +1,40 @@
-<?php 	use PHPMyMongoAdmin\Model\Database; //c'est la fete du slip ! ?>
+<?php $dbList = new \PHPMyMongoAdmin\View\DbListMaker() ?>
 <aside id="SideBar">
-	<?php 
-		$manager = new Database('DataBase');
-		$dbList = $manager->getDBList();
-		echo $this->link('create database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']);
-	?>
+	<?= $this->link('create database',['controller'=>'database','action'=>'add'],['class'=>'btn-creatdb']); ?>
 	<ul>
-	<?php foreach ($dbList as $db): ?>
+	<?php foreach($dbList as $key => $db): ?>
 		<li class="db-list">
-			<?php ob_start(); ?>
-				<span class="db-name">
-					<?php echo $db->getName(); ?>
-				</span>
-				<span class="db-size">
-					<?php echo $this->Size->bytesToSize($db->getSizeOnDisk()); ?>
-				</span>
-			<?php $content = ob_get_clean(); ?>
-			<?php echo $this->link($content, ['controller'=>'database','action'=>'view','params'=>['dbName'=>$db->getName()]],['class'=>'db-link']);?>
-			<?php if(isset($this->request->params[0])):?>
+			<div class="db-link-wrapper">
+				<span class="btn-show-collection">+</span>
+				<?php ob_start(); ?>
+					<span class="db-name">
+						<?= $db['name']; ?>
+					</span>
+					<span class="db-size">
+						<?= $this->Size->bytesToSize($db['size']); ?>
+					</span>
+				<?php $content = ob_get_clean(); ?>
+				<?= $this->link($content, ['controller'=>'database','action'=>'view','params'=>['dbName'=>$db['name']]],['class'=>'db-link']);?>
+			</div>
 			<?php 
+			if(isset($this->request->params[0])){
+				$class = '';
 				$name = $this->request->params[0];
 				$name = explode('.', $name);
-				$collectionList = [];
-				if($name[0] === $db->getName()){
-					$collectionList = $manager->getCollectionList($name[0]);
+				if($name[0] === $db['name']){
+					$class = 'open';
 				}
+			}
 			?>
-			<ul>
-				<?php foreach ($collectionList as $collection): ?>
-					<li>
-						<?php echo $this->link($collection->getName(),['controller'=>'collection', 'action'=>'index','params'=>['name'=>$name[0].'.'.$collection->getName()]],['class'=>'db-link-mini']); ?>
-					</li>
-				<?php endforeach ?>
-			</ul>
-			<?php endif ?>
-			
+			<div class="db-collections-wrapper <?= $class ?>">
+				<ul>
+					<?php foreach ($db['collections'] as $collection): ?>
+						<li>
+							<?= $this->link($collection,['controller'=>'collection', 'action'=>'index','params'=>['name'=>$db['name'].'.'.$collection]],['class'=>'db-link-mini']); ?>
+						</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
 		</li>
 	<?php endforeach ?>
 	</ul>

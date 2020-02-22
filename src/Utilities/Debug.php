@@ -12,6 +12,12 @@
  *
  */
 
+function dd($data,$message = ''){
+	debug($data,$message = '');
+	die();
+
+}
+
 function debug($data,$message = ''){
 	echo '<div class="debug-message">';
 	if(!empty($message)){

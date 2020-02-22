@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<title>PHP My Mongo Admin</title>
 	<link rel="stylesheet" media="screen" type="text/css" href="/css/style.css" />
-	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/PHPMyMongoAdmin.js"></script>
+
 	<?php echo $this->getHeader(); ?>
 </head>
 <body>
@@ -28,7 +29,7 @@
 				$time = (int)$time;
 			?>
 			<span class="debug-time"><?php echo $time; ?> ms</span><br>
-			<span>powered by <a href="https://github.com/skank" target="_blank">skank</a>.</span>
+			<span>powered by <a href="https://github.com/skankydev" target="_blank">skankydev</a>.</span>
 		</footer>
 	</section>
 	<?php echo $this->getScript(); ?>

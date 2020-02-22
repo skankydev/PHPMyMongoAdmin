@@ -40,7 +40,7 @@ $(document).ready(function(){
 		<?php if(isset($query)): ?>
 			json:<?= json_encode($query); ?>
 		<?php else: ?>
-			json:{"filter":{"fieldName":"value"},"options":{"projection": {"fieldName": 1}}}
+			json:{"filter":{"fieldName":"value"},"options":[]}
 		<?php endif ?>
 	};
 	$('#Editor').initJsonEdit(option);

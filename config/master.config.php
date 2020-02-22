@@ -8,6 +8,7 @@ return [
 			'pass'=>''
 		]
 	],
+	
 	'routes' =>[
 		'/' => [
 			'options'=>[

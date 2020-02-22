@@ -46,8 +46,8 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	var container = document.getElementsByClassName('editor');
-	var option = {
+	let container = document.getElementsByClassName('editor');
+	let option = {
 		mode: 'view',
 		indentation:4,
 		search:false,
@@ -56,10 +56,10 @@ $(document).ready(function(){
 		}
 	}
 
-	var num = container.length;
-	var editor = [];
-	for (var i = 0; i < num; i++) {
-		var text = $(container[i]).html();
+	let num = container.length;
+	let editor = [];
+	for (let i = 0; i < num; i++) {
+		let text = $(container[i]).html();
 		$(container[i]).html('');
 		editor[i] = new JSONEditor(container[i], option);
 		editor[i].set(JSON.parse(text));

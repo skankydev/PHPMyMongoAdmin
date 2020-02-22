@@ -15,7 +15,7 @@ a small manager for a development environment
 Click Download ZIP
 Unzip this file into the vhost directory
 
-`php composer.phar install` or `composer install`
+`composer install`
 
 ## How to use
 
